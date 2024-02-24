@@ -4,12 +4,14 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamphoenix.fairandnews.fair.FairMapper">
 
-    <resultMap id="getOrdinaryView" type="com.teamphoenix.fairandnews.fair.common.Fair">
+    <resultMap id="selectFairByCategory" type="com.teamphoenix.fairandnews.fair.common.FairDTO">
         <id property="fairId" column="fair_id"/>
         <result property="fairTitle" column="fair_title"/>
-        <result property="fairContent" column="fair_content"/>
         <result property="fairWritedate" column="fair_writedate"/>
+    </resultMap>
+    <resultMap id="getOrdinaryView" type="com.teamphoenix.fairandnews.fair.common.FairDTO" extends="selectFairByCategory">
         <result property="memberCode" column="member_code"/>
+        <result property="fairContent" column="fair_content"/>
     </resultMap>
 
     <select id="getFairPost" parameterType="_int" resultMap="getOrdinaryView">
@@ -23,4 +25,23 @@
          WHERE F.fair_id = #{fairId} ;
     </select>
 
+    <select id="selectPostsBySearchCategory" parameterType="com.teamphoenix.fairandnews.fair.common.FairDTO" resultMap="selectFairByCategory">
+        SELECT
+               F.fair_id
+             , F.fair_title
+             , F.fair_writedate
+          FROM fair F
+        <where>
+            <if test="fairTitle neq null and fairContent eq null">
+               F.fair_title LIKE CONCAT ('%', #{fairTitle}, '%')
+            </if>
+            <if test="fairContent neq null and fairTitle eq null">
+                F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
+            </if>
+            <if test="fairTitle neq null and fairContent neq null">
+                F.fair_title LIKE CONCAT('%', #{fairTitle}, '%')
+            AND F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
+            </if>
+        </where>
+    </select>
 </mapper>
