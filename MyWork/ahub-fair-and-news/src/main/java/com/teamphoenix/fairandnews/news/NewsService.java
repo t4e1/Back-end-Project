@@ -1,7 +1,10 @@
 package com.teamphoenix.fairandnews.news;
 
+import com.teamphoenix.fairandnews.news.common.NewsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class NewsService {
@@ -13,6 +16,13 @@ public class NewsService {
         this.newsMapper = newsMapper;
     }
 
-    
+    public NewsDTO getNewsPost(Map<String, String> newsId) {
+
+        int postNum = Integer.valueOf(newsId.get("newsId"));
+        NewsDTO result = newsMapper.getNewsPost(postNum);
+        System.out.println("result = " + result);
+
+        return result;
+    }
 
 }

@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 class FairServiceTest {
 
     @Autowired
-    private FairService findFairService;
+    private FairService fairService;
 
     static Stream<Arguments> getPostNum() {
 
@@ -44,7 +44,7 @@ class FairServiceTest {
     @MethodSource("getPostNum")
     void findFairPost(Map<String, String> postNum) {
         Assertions.assertDoesNotThrow(
-                () -> findFairService.getFairPost(postNum)
+                () -> fairService.getFairPost(postNum)
         );
     }
 
@@ -53,7 +53,7 @@ class FairServiceTest {
     @MethodSource("getCategoryInfo")
     void selectPostByCategory(FairDTO getInfo) {
         Assertions.assertDoesNotThrow(
-                () -> findFairService.findPostBySearchCategory(getInfo)
+                () -> fairService.findFairByCondition(getInfo)
         );
     }
 

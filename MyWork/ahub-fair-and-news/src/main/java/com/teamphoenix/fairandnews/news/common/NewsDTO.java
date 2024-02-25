@@ -9,18 +9,18 @@ public class NewsDTO {
     private String newsContent;
     private java.time.LocalDateTime newsWritedate;
     private int useAcceptance;
-    private int member_code;
+    private int memberCode;
 
     public NewsDTO() {
     }
 
-    public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int member_code) {
+    public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int memberCode) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
         this.newsContent = newsContent;
         this.newsWritedate = newsWritedate;
         this.useAcceptance = useAcceptance;
-        this.member_code = member_code;
+        this.memberCode = memberCode;
     }
 
     public int getNewsId() {
@@ -63,12 +63,12 @@ public class NewsDTO {
         this.useAcceptance = useAcceptance;
     }
 
-    public int getMember_code() {
-        return member_code;
+    public int getMemberCode() {
+        return memberCode;
     }
 
-    public void setMember_code(int member_code) {
-        this.member_code = member_code;
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class NewsDTO {
                 ", newsContent='" + newsContent + '\'' +
                 ", newsWritedate=" + newsWritedate +
                 ", useAcceptance=" + useAcceptance +
-                ", member_code=" + member_code +
+                ", member_code=" + memberCode +
                 '}';
     }
 }

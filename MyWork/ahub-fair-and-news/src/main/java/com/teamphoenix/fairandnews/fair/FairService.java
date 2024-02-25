@@ -38,10 +38,10 @@ public class FairService {
      * 검색창 옆의 카테고리를 선택(제목, 내용, 제목+내용, 작성자)하고 검색어를 입력,
      * 해당하는 카테고리와 검색어를 포함하는 게시물 리스트를 뽑아주는 메소드
     * */
-    public List<FairDTO> findPostBySearchCategory(FairDTO searchInfo) {
+    public List<FairDTO> findFairByCondition(FairDTO searchInfo) {
 
 
-        List<FairDTO> result = fairMapper.selectPostsBySearchCategory(searchInfo);
+        List<FairDTO> result = fairMapper.searchPostsByCondition(searchInfo);
 
         result.forEach(System.out::println);
 
