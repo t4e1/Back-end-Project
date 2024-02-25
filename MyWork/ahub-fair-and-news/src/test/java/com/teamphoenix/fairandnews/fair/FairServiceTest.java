@@ -24,17 +24,17 @@ class FairServiceTest {
     static Stream<Arguments> getPostNum() {
 
             return Stream.of(
-                    Arguments.of(Map.of("fairId", "1")),
-                    Arguments.of(Map.of("fairId", "5"))
+                    Arguments.of(Map.of("fairId", "2")),
+                    Arguments.of(Map.of("fairId", "8"))
             );
     }
 
     static Stream<Arguments> getCategoryInfo() {
 
         return Stream.of(
-                Arguments.of(new FairDTO("제목1", null)),
-                Arguments.of(new FairDTO(null,"내용3")),
-                Arguments.of(new FairDTO("제목5", "내용5"))
+                Arguments.of(new FairDTO("2024", null)),
+                Arguments.of(new FairDTO(null,"맥주")),
+                Arguments.of(new FairDTO("맥주", "맥주"))
         );
 
     }

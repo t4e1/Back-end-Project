@@ -56,8 +56,8 @@ CREATE TABLE memberinfo (
 
 CREATE TABLE fair (
     fair_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '주류페어 번호',
-    fair_title VARCHAR(255) NOT NULL COMMENT '주류페어 제목',
-    fair_content TEXT NOT NULL COMMENT '주류페어 내용',
+    fair_title VARCHAR(255) NOT NULL UNIQUE COMMENT '주류페어 제목',
+    fair_content TEXT NOT NULL UNIQUE COMMENT '주류페어 내용',
     fair_writedate DATETIME NOT NULL COMMENT '작성날짜',
     use_acceptance TINYINT(1) NOT NULL DEFAULT 1 COMMENT '사용여부',
     member_code INT NOT NULL  DEFAULT 1 COMMENT '주류페어 작성자',
@@ -66,8 +66,8 @@ CREATE TABLE fair (
 
 CREATE TABLE news (
     news_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '뉴스번호',
-    news_title VARCHAR(255) NOT NULL COMMENT '뉴스제목',
-    news_content TEXT NOT NULL COMMENT '뉴스내용',
+    news_title VARCHAR(255) NOT NULL UNIQUE COMMENT '뉴스제목',
+    news_content TEXT NOT NULL UNIQUE COMMENT '뉴스내용',
     news_writedate DATETIME NOT NULL COMMENT '작성날짜',
     use_acceptance TINYINT(1) NOT NULL DEFAULT 1 COMMENT '사용여부',
     member_code INT NOT NULL DEFAULT 1 COMMENT '뉴스 작성자',
