@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamphoenix.fairandnews.news.NewsMapper">
+<mapper namespace="com.teamphoenix.ahub.news.query.NewsMapper">
 
-    <resultMap id="searchNewsByCondition" type="com.teamphoenix.fairandnews.news.common.NewsDTO">
+    <resultMap id="searchNewsByCondition" type="com.teamphoenix.ahub.news.query.common.NewsDTO">
         <id property="newsId" column="news_id"/>
         <result property="newsTitle" column="news_title"/>
         <result property="newsWritedate" column="news_writedate"/>
     </resultMap>
-    <resultMap id="getOrdinaryView" type="com.teamphoenix.fairandnews.news.common.NewsDTO" extends="searchNewsByCondition">
+    <resultMap id="getOrdinaryView" type="com.teamphoenix.ahub.news.query.common.NewsDTO" extends="searchNewsByCondition">
         <result property="memberCode" column="member_code"/>
         <result property="newsContent" column="news_content"/>
     </resultMap>
@@ -25,7 +25,7 @@
         WHERE F.news_id = #{newsId} ;
     </select>
 
-    <select id="searchPostsByCondition" parameterType="com.teamphoenix.fairandnews.news.common.NewsDTO" resultMap="searchNewsByCondition">
+    <select id="searchPostsByCondition" parameterType="com.teamphoenix.ahub.news.query.common.NewsDTO" resultMap="searchNewsByCondition">
         SELECT
         F.news_id
         , F.news_title

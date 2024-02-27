@@ -1,6 +1,6 @@
-package com.teamphoenix.fairandnews.news;
+package com.teamphoenix.ahub.news.query;
 
-import com.teamphoenix.fairandnews.news.common.NewsDTO;
+import com.teamphoenix.ahub.news.query.common.NewsDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

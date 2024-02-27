@@ -1,4 +1,4 @@
-package com.teamphoenix.fairandnews.news.common;
+package com.teamphoenix.ahub.news.query.common;
 
 import java.time.LocalDateTime;
 
@@ -7,7 +7,7 @@ public class News {
     private int newsId;
     private String newsTitle;
     private String newsContent;
-    private java.time.LocalDateTime newsWritedate;
+    private LocalDateTime newsWritedate;
     private int useAcceptance;
     private int member_code;
 

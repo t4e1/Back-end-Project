@@ -1,6 +1,6 @@
-package com.teamphoenix.fairandnews.fair;
+package com.teamphoenix.ahub.fair.query;
 
-import com.teamphoenix.fairandnews.fair.common.FairDTO;
+import com.teamphoenix.ahub.fair.query.common.FairDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 

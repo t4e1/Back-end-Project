@@ -1,5 +1,6 @@
-package com.teamphoenix.fairandnews.news;
+package com.teamphoenix.ahub.news.query;
 
+import com.teamphoenix.ahub.news.query.NewsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +35,5 @@ class NewsServiceTest {
         );
     }
 
-    
 
 }

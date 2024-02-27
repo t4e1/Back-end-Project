@@ -1,4 +1,4 @@
-package com.teamphoenix.fairandnews;
+package com.teamphoenix.ahub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

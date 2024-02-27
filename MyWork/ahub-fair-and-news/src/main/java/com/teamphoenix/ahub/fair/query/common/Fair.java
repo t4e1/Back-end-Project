@@ -1,4 +1,4 @@
-package com.teamphoenix.fairandnews.fair.common;
+package com.teamphoenix.ahub.fair.query.common;
 
 import java.time.LocalDateTime;
 
@@ -7,7 +7,7 @@ public class Fair {
     private int fairId;
     private String fairTitle;
     private String fairContent;
-    private java.time.LocalDateTime fairWritedate;
+    private LocalDateTime fairWritedate;
     private int memberCode;
 
     public Fair() {

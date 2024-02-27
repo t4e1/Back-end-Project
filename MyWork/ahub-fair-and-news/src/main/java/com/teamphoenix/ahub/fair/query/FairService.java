@@ -1,12 +1,9 @@
-package com.teamphoenix.fairandnews.fair;
+package com.teamphoenix.ahub.fair.query;
 
-import com.teamphoenix.fairandnews.fair.common.Fair;
-import com.teamphoenix.fairandnews.fair.common.FairDTO;
+import com.teamphoenix.ahub.fair.query.common.FairDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +11,6 @@ import java.util.Map;
 public class FairService {
 
     private final FairMapper fairMapper;
-
     @Autowired
     public FairService(FairMapper fairMapper) {
         this.fairMapper = fairMapper;
