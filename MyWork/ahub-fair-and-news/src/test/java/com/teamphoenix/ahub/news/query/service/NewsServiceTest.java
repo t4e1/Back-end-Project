@@ -1,6 +1,6 @@
-package com.teamphoenix.ahub.news.query;
+package com.teamphoenix.ahub.news.query.service;
 
-import com.teamphoenix.ahub.news.query.NewsService;
+import com.teamphoenix.ahub.news.query.service.NewsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

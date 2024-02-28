@@ -1,6 +1,7 @@
-package com.teamphoenix.ahub.fair.query;
+package com.teamphoenix.ahub.fair.query.service;
 
-import com.teamphoenix.ahub.fair.query.common.FairDTO;
+import com.teamphoenix.ahub.fair.query.dto.FairDTO;
+import com.teamphoenix.ahub.fair.query.service.FairService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

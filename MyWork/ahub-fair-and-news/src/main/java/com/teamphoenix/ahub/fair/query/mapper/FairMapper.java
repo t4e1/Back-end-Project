@@ -1,6 +1,6 @@
-package com.teamphoenix.ahub.fair.query;
+package com.teamphoenix.ahub.fair.query.mapper;
 
-import com.teamphoenix.ahub.fair.query.common.FairDTO;
+import com.teamphoenix.ahub.fair.query.dto.FairDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

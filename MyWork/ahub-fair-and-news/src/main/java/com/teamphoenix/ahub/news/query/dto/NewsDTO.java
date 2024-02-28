@@ -1,61 +1,85 @@
-package com.teamphoenix.ahub.news.query.common;
+package com.teamphoenix.ahub.news.query.dto;
 
 import java.time.LocalDateTime;
 
-public class News {
+public class NewsDTO {
 
     private int newsId;
     private String newsTitle;
     private String newsContent;
     private LocalDateTime newsWritedate;
     private int useAcceptance;
-    private int member_code;
+    private int memberCode;
 
-    public News() {
+    public NewsDTO() {
     }
 
-    public News(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int member_code) {
+    public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int memberCode) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
         this.newsContent = newsContent;
         this.newsWritedate = newsWritedate;
         this.useAcceptance = useAcceptance;
-        this.member_code = member_code;
+        this.memberCode = memberCode;
     }
 
     public int getNewsId() {
         return newsId;
     }
 
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
+    }
+
     public String getNewsTitle() {
         return newsTitle;
+    }
+
+    public void setNewsTitle(String newsTitle) {
+        this.newsTitle = newsTitle;
     }
 
     public String getNewsContent() {
         return newsContent;
     }
 
+    public void setNewsContent(String newsContent) {
+        this.newsContent = newsContent;
+    }
+
     public LocalDateTime getNewsWritedate() {
         return newsWritedate;
+    }
+
+    public void setNewsWritedate(LocalDateTime newsWritedate) {
+        this.newsWritedate = newsWritedate;
     }
 
     public int getUseAcceptance() {
         return useAcceptance;
     }
 
-    public int getMember_code() {
-        return member_code;
+    public void setUseAcceptance(int useAcceptance) {
+        this.useAcceptance = useAcceptance;
+    }
+
+    public int getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
     }
 
     @Override
     public String toString() {
-        return "News{" +
+        return "NewsDTO{" +
                 "newsId=" + newsId +
                 ", newsTitle='" + newsTitle + '\'' +
                 ", newsContent='" + newsContent + '\'' +
                 ", newsWritedate=" + newsWritedate +
                 ", useAcceptance=" + useAcceptance +
-                ", member_code=" + member_code +
+                ", member_code=" + memberCode +
                 '}';
     }
 }

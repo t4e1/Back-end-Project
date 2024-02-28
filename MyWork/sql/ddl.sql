@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS member_authority CASCADE;
 DROP TABLE IF EXISTS authority CASCADE;
 DROP TABLE IF EXISTS post CASCADE;
 DROP TABLE IF EXISTS post_category CASCADE;
-DROP TABLE IF EXISTS memberinfo CASCADE;
+DROP TABLE IF EXISTS member_info CASCADE;
 DROP TABLE IF EXISTS member_category CASCADE;
 DROP TABLE IF EXISTS report CASCADE;
 DROP TABLE IF EXISTS report_category CASCADE;
@@ -36,7 +36,7 @@ CREATE TABLE member_category (
     category_name VARCHAR(255) NOT NULL UNIQUE COMMENT '카테고리 명'
 );
 
-CREATE TABLE memberinfo (
+CREATE TABLE member_info (
     member_code INT PRIMARY KEY AUTO_INCREMENT COMMENT '회원 코드',
     member_id VARCHAR(15) NOT NULL UNIQUE COMMENT '회원 아이디',
     member_name VARCHAR(255) NOT NULL COMMENT '회원이름',
@@ -61,7 +61,7 @@ CREATE TABLE fair (
     fair_writedate DATETIME NOT NULL COMMENT '작성날짜',
     use_acceptance TINYINT(1) NOT NULL DEFAULT 1 COMMENT '사용여부',
     member_code INT NOT NULL  DEFAULT 1 COMMENT '주류페어 작성자',
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code)
+	    FOREIGN KEY (member_code) REFERENCES member_info(member_code)
 );
 
 CREATE TABLE news (
@@ -71,7 +71,7 @@ CREATE TABLE news (
     news_writedate DATETIME NOT NULL COMMENT '작성날짜',
     use_acceptance TINYINT(1) NOT NULL DEFAULT 1 COMMENT '사용여부',
     member_code INT NOT NULL DEFAULT 1 COMMENT '뉴스 작성자',
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code)
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code)
 );
 
 CREATE TABLE post_category (
@@ -91,8 +91,8 @@ CREATE TABLE post (
     member_code INT NOT NULL COMMENT '게시글 작성자',
     post_modify_date DATETIME NOT NULL COMMENT '게시글 수정일',
     FOREIGN KEY (category_id) REFERENCES post_category(category_id),
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code)
-);
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code)
+);.ㅕㄴ
 
 CREATE TABLE reply (
     reply_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '댓글번호',
@@ -103,7 +103,7 @@ CREATE TABLE reply (
     use_acceptance TINYINT(1) DEFAULT 1 NOT NULL COMMENT '사용여부',
     member_code INT NOT NULL COMMENT '댓글 작성자',
     FOREIGN KEY (post_id) REFERENCES post(post_id),
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code)
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code)
 );
 
 CREATE TABLE picture (
@@ -126,7 +126,7 @@ CREATE TABLE liked_post (
     like_state TINYINT(1) NOT NULL DEFAULT 1 COMMENT '활성상태',
     member_code INT NOT NULL COMMENT '좋아요 한 회원',
     post_id INT NOT NULL COMMENT '게시글번호',
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code),
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code),
     FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
@@ -139,7 +139,7 @@ CREATE TABLE member_policy (
     member_code INT NOT NULL COMMENT '회원아이디',
     policy_id INT NOT NULL COMMENT '정책ID',
     PRIMARY KEY (member_code, policy_id),
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code),
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code),
     FOREIGN KEY (policy_id) REFERENCES policy(policy_id)
 );
 
@@ -153,7 +153,7 @@ CREATE TABLE member_authority (
     member_code INT NOT NULL COMMENT '회원아이디',
     authority_id INT NOT NULL COMMENT '권한ID',
     PRIMARY KEY (member_code, authority_id),
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code),
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code),
     FOREIGN KEY (authority_id) REFERENCES authority(authority_id)
 );
 
@@ -164,5 +164,5 @@ CREATE TABLE login_history (
     attempt_time TIME NOT NULL COMMENT '시도시간',
     attempt_location VARCHAR(255) NOT NULL COMMENT '시도위치',
     member_code INT NOT NULL COMMENT '회원아이디',
-    FOREIGN KEY (member_code) REFERENCES memberinfo(member_code)
+    FOREIGN KEY (member_code) REFERENCES member_info(member_code)
 );

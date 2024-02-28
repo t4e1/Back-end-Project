@@ -1,13 +1,14 @@
-package com.teamphoenix.ahub.fair.query;
+package com.teamphoenix.ahub.fair.query.service;
 
-import com.teamphoenix.ahub.fair.query.common.FairDTO;
+import com.teamphoenix.ahub.fair.query.dto.FairDTO;
+import com.teamphoenix.ahub.fair.query.mapper.FairMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(value = "QueryFairService")
 public class FairService {
 
     private final FairMapper fairMapper;

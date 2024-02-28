@@ -1,4 +1,4 @@
-package com.teamphoenix.ahub.fair.query.common;
+package com.teamphoenix.ahub.fair.query.dto;
 
 import java.time.LocalDateTime;
 
