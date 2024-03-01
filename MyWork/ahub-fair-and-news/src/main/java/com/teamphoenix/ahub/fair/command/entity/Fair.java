@@ -38,23 +38,12 @@ public class Fair {
     @Column(name = "member_code", columnDefinition = "default 1")
     private int memberCode;
 
-    public void setFairTitle(String fairTitle) {
+    /* Fair 게시글 등록용 생성자 */
+    public Fair(String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode) {
         this.fairTitle = fairTitle;
-    }
-
-    public void setFairContent(String fairContent) {
         this.fairContent = fairContent;
-    }
-
-    public void setFairWritedate(LocalDateTime fairWritedate) {
         this.fairWritedate = fairWritedate;
-    }
-
-    public void setUseAcceptance(int useAcceptance) {
         this.useAcceptance = useAcceptance;
-    }
-
-    public void setMemberCode(int memberCode) {
         this.memberCode = memberCode;
     }
 

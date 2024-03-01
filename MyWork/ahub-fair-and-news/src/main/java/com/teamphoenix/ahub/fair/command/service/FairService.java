@@ -24,8 +24,13 @@ public class FairService {
     @Transactional
     public void registFairPost(FairDTO fairInfo) {
 
-        log.info("ModelMapper 동작 확인 : {}", modelMapper.map(fairInfo, Fair.class));
-        fairRepository.save(modelMapper.map(fairInfo, Fair.class));
+        Fair fair = new Fair(fairInfo.getFairTitle(),
+                fairInfo.getFairContent(),
+                fairInfo.getFairWritedate(),
+                fairInfo.getUseAcceptance(),
+                fairInfo.getMemberCode());
+        log.info("fair 엔터티 확인 : {}", fair);
+        fairRepository.save(fair);
 
     }
 }

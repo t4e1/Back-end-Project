@@ -10,5 +10,7 @@ public interface FairMapper {
 
     FairDTO getFairPost(int postNum);
 
-    List<FairDTO> searchPostsByCondition(FairDTO searchInfo) ;
+    List<FairDTO> selectPostsByCondition(FairDTO searchInfo) ;
+
+//    List<FairDTO> selectAllPosts();
 }
