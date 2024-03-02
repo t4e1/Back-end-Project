@@ -1,0 +1,8 @@
+### PUT new Fair Post
+POST localhost:10003/board/fairs/new
+Content-Type:application/json
+
+{
+  "fairTitle": "새롭게 등록된 축제입니다!2",
+  "fairContent": "새롭게 등록된 축제 내용 !3"
+}

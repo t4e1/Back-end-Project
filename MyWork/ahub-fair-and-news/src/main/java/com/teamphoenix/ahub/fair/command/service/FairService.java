@@ -24,11 +24,14 @@ public class FairService {
     @Transactional
     public void registFairPost(FairDTO fairInfo) {
 
+        /* Setter를 사용하지 않고 생성자로 FairDTO -> Fair Entity 매핑 */
         Fair fair = new Fair(fairInfo.getFairTitle(),
                 fairInfo.getFairContent(),
                 fairInfo.getFairWritedate(),
                 fairInfo.getUseAcceptance(),
                 fairInfo.getMemberCode());
+
+
         log.info("fair 엔터티 확인 : {}", fair);
         fairRepository.save(fair);
 

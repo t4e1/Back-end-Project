@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController(value = "queryFairController")
-@RequestMapping("/fairs")
+@RequestMapping("/board/fairs")
 @Log4j2
 public class FairController {
 
