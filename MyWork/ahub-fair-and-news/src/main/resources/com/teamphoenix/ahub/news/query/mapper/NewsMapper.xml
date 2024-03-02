@@ -16,21 +16,21 @@
 
     <select id="getNewsPost" parameterType="_int" resultMap="getOrdinaryView">
         SELECT
-        F.news_id
-        , F.news_title
-        , F.news_content
-        , F.news_writedate
-        , F.member_code
-        FROM news F
-        WHERE F.news_id = #{newsId} ;
+               F.news_id
+             , F.news_title
+             , F.news_content
+             , F.news_writedate
+             , F.member_code
+          FROM news F
+         WHERE F.news_id = #{newsId} ;
     </select>
 
-    <select id="searchPostsByCondition" parameterType="com.teamphoenix.ahub.news.query.dto.NewsDTO" resultMap="searchNewsByCondition">
+    <select id="selectPostsByCondition" parameterType="com.teamphoenix.ahub.news.query.dto.NewsDTO" resultMap="searchNewsByCondition">
         SELECT
-        F.news_id
-        , F.news_title
-        , F.news_writedate
-        FROM news F
+               F.news_id
+             , F.news_title
+             , F.news_writedate
+          FROM news F
         <where>
             <if test="newsTitle neq null and newsContent eq null">
                 F.news_title LIKE CONCAT ('%', #{newsTitle}, '%')

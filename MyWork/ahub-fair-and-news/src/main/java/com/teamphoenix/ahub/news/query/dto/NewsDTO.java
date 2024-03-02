@@ -14,6 +14,11 @@ public class NewsDTO {
     public NewsDTO() {
     }
 
+    public NewsDTO(String newsTitle, String newsContent) {
+        this.newsTitle = newsTitle;
+        this.newsContent = newsContent;
+    }
+
     public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int memberCode) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;

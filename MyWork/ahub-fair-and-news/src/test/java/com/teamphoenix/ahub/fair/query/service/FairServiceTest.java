@@ -30,7 +30,7 @@ class FairServiceTest {
 //            );
 //    }
 
-    static Stream<Arguments> getCategoryInfo() {
+    static Stream<Arguments> getSearchInfo() {
 
         return Stream.of(
                 Arguments.of(new FairDTO(null, null)),
@@ -59,10 +59,10 @@ class FairServiceTest {
 //        );
 //    }
 
-    @DisplayName("T3-검색창에서 카테고리 조건에 맞는 게시글 검색 후 리스트 반환")
+    @DisplayName("T2-검색창에서 카테고리 조건에 맞는 게시글 검색 후 리스트 반환 테스트")
     @ParameterizedTest
-    @MethodSource("getCategoryInfo")
-    void selectPostByCategoryTest(FairDTO getInfo) {
+    @MethodSource("getSearchInfo")
+    void selectPostByConditionTest(FairDTO getInfo) {
         Assertions.assertDoesNotThrow(
                 () -> fairService.findPostsByCondition(getInfo)
         );

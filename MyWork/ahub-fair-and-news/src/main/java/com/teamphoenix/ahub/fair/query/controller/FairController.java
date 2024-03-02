@@ -45,8 +45,8 @@ public class FairController {
             @RequestParam(value = "st", required = false) String title,
             @RequestParam(value = "sc", required = false) String content) {
 
-        FairDTO postInfo = new FairDTO(title, content);
-        List<FairDTO> resultList = fairService.findPostsByCondition(postInfo);
+        FairDTO searchInfo = new FairDTO(title, content);
+        List<FairDTO> resultList = fairService.findPostsByCondition(searchInfo);
 
         return ResponseEntity
                 .ok()

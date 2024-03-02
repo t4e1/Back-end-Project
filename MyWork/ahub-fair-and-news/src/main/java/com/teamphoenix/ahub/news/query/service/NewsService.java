@@ -5,6 +5,7 @@ import com.teamphoenix.ahub.news.query.mapper.NewsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -17,13 +18,14 @@ public class NewsService {
         this.newsMapper = newsMapper;
     }
 
-    public NewsDTO getNewsPost(Map<String, String> newsId) {
+    public NewsDTO getNewsPost(int newsId) {
 
-        int postNum = Integer.valueOf(newsId.get("newsId"));
-        NewsDTO result = newsMapper.getNewsPost(postNum);
-        System.out.println("result = " + result);
-
-        return result;
+        return newsMapper.getNewsPost(newsId);
     }
 
+
+    public List<NewsDTO> findPostsByCondition(NewsDTO searchInfo) {
+
+        return newsMapper.selectPostsByCondition(searchInfo);
+    }
 }
