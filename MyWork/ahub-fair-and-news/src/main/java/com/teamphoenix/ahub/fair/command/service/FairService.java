@@ -36,4 +36,16 @@ public class FairService {
         fairRepository.save(fair);
 
     }
+
+    @Transactional
+    public void modifyFairPost(int postNum, FairDTO modifyInfo) {
+
+        Fair fair = new Fair(modifyInfo.getFairTitle(),
+                modifyInfo.getFairContent(),
+                modifyInfo.getFairWritedate(),
+                modifyInfo.getUseAcceptance(),
+                modifyInfo.getMemberCode());
+
+        /* repository 관련 기능 추가 필요 */
+    }
 }

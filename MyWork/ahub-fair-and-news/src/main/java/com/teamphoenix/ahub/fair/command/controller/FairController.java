@@ -4,10 +4,7 @@ import com.teamphoenix.ahub.fair.command.dto.FairDTO;
 import com.teamphoenix.ahub.fair.command.service.FairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -23,6 +20,7 @@ public class FairController {
         this.fairService = fairService;
     }
 
+    /* 새 게시글 등록 핸들러 메소드 */
     @PostMapping("/new")
     public ResponseEntity<?> addNewPost(@RequestBody FairDTO postInfo) {
 
@@ -43,5 +41,26 @@ public class FairController {
                 .created(URI.create("/board/fairs/lists"))
                 .build();
     }
+
+    /* 기존 게시글 수정 핸들러 메소드 */
+    @PutMapping("/{postNum}")
+    public ResponseEntity<?> modifyFairPost(
+            @PathVariable(value = "postNum") int postNum,
+            @RequestBody FairDTO modifyInfo) {
+
+        /* 수정할 게시글에서 가져온 작성 시간이 현재 시각과 일치하지 않으면 현재시각으로 변경 */
+        if (modifyInfo.getFairWritedate() != LocalDateTime.now())
+            modifyInfo.setFairWritedate(LocalDateTime.now());
+
+        fairService.modifyFairPost(postNum, modifyInfo);
+
+        return ResponseEntity
+                .created(URI.create("/board/fairs/lists"))      // 게시글 수정 후 전체글 list로 이동
+                .build();
+    }
+
+    /* 게시글 사용여부 수정 (관리자) */
+    
+    /* 게시글 삭제 */
 
 }

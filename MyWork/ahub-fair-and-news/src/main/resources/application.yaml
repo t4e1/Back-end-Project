@@ -15,3 +15,14 @@ spring:
     properties:
       hibernate:
         '[format_sql]': true
+
+  application:
+    name: fair-and-news-service
+
+# 유레카 클라이언트 관련 설정
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:10000/eureka
