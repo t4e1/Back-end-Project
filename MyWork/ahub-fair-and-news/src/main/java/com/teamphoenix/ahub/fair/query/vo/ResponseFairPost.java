@@ -1,30 +1,25 @@
-package com.teamphoenix.ahub.fair.command.dto;
+package com.teamphoenix.ahub.fair.query.vo;
 
-import lombok.*;
+
+import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class FairDTO {
+
+public class ResponseFairPost {
 
     private int fairId;
     private String fairTitle;
     private String fairContent;
-    private java.time.LocalDateTime fairWritedate;
+    private LocalDateTime fairWritedate;
     private int useAcceptance;
     private int memberCode;
 
-    public FairDTO() {
+    public ResponseFairPost() {
     }
 
-    public FairDTO(String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode) {
-        this.fairTitle = fairTitle;
-        this.fairContent = fairContent;
-        this.fairWritedate = fairWritedate;
-        this.useAcceptance = useAcceptance;
-        this.memberCode = memberCode;
-    }
-
-    public FairDTO(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode) {
+    public ResponseFairPost(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode) {
         this.fairId = fairId;
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
@@ -83,7 +78,7 @@ public class FairDTO {
 
     @Override
     public String toString() {
-        return "FairDTO{" +
+        return "ResponseFairPost{" +
                 "fairId=" + fairId +
                 ", fairTitle='" + fairTitle + '\'' +
                 ", fairContent='" + fairContent + '\'' +

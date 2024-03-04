@@ -2,7 +2,9 @@ package com.teamphoenix.ahub.fair.query.controller;
 
 import com.teamphoenix.ahub.fair.query.dto.FairDTO;
 import com.teamphoenix.ahub.fair.query.service.FairService;
+import com.teamphoenix.ahub.fair.query.vo.ResponseFairPost;
 import lombok.extern.log4j.Log4j2;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +26,25 @@ public class FairController {
 
     /* 게시글을 클릭하면 내용을 호출하는 핸들러 메소드 */
     @GetMapping("/{postId}")
-    public ResponseEntity<FairDTO> findFairPost(@PathVariable(value = "postId") int postId) {
+    public ResponseEntity<ResponseFairPost> findFairPost(@PathVariable(value = "postId") int postId) {
+
+        FairDTO fairDTO = fairService.getFairPost(postId);
+
+
+        ResponseFairPost responseFairPost = new ResponseFairPost(
+                fairDTO.getFairId(),
+                fairDTO.getFairTitle(),
+                fairDTO.getFairContent(),
+                fairDTO.getFairWritedate(),
+                fairDTO.getUseAcceptance(),
+                fairDTO.getMemberCode()
+        );
 
         return ResponseEntity
                 .ok()
-                .body(fairService.getFairPost(postId));
+                .body(responseFairPost);
+
+        // update url 포함시키기
     }
 
 //    @GetMapping("/lists")

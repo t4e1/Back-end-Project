@@ -2,6 +2,8 @@ package com.teamphoenix.ahub.fair.command.controller;
 
 import com.teamphoenix.ahub.fair.command.dto.FairDTO;
 import com.teamphoenix.ahub.fair.command.service.FairService;
+import com.teamphoenix.ahub.fair.command.vo.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,46 +13,39 @@ import java.time.LocalDateTime;
 
 @RestController(value = "fairCommandController")
 @RequestMapping("/board/fairs")
+//@RequestMapping("/") Spring Cloud Gateway  // 필터 설정 시 활성화 할 것
 public class FairController {
 
     private final FairService fairService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public FairController(FairService fairService) {
+    public FairController(FairService fairService, ModelMapper modelMapper) {
         this.fairService = fairService;
+        this.modelMapper = modelMapper;
     }
 
     /* 새 게시글 등록 핸들러 메소드 */
     @PostMapping("/new")
-    public ResponseEntity<?> addNewPost(@RequestBody FairDTO postInfo) {
+    public ResponseEntity<?> addNewPost(@RequestBody RegistFairInfo postInfo) {
 
-        /* 프론트로부터 현재시간, 사용여부, 작성자 코드를 받아오지 않는 경우 백엔드 서버에서 직접 입력 */
-        if (postInfo.getFairWritedate() == null) {
-            postInfo.setFairWritedate(LocalDateTime.now());
-        }
-        if (postInfo.getUseAcceptance() == 0) {
-            postInfo.setUseAcceptance(1);
-        }
-        if (postInfo.getMemberCode() == 0) {
-            postInfo.setMemberCode(1);
-        }
+        FairDTO newPostInfo = transferVOtoDTO(postInfo);
 
-        fairService.registFairPost(postInfo);
+        fairService.registFairPost(newPostInfo);
 
         return ResponseEntity
-                .created(URI.create("/board/fairs/lists"))
+                .created(URI.create("/board/fairs/lists"))      // 게시글 등록 후 전체 리스트 반환할 수 있도록 url반환
                 .build();
     }
 
     /* 기존 게시글 수정 핸들러 메소드 */
+    /* find 하고 가져온 모든 값들 중 해당하는 값만 수정해서 업데이트 & flush 하기 때문에 동적쿼리 신경 쓸 필요가 없음 */
     @PutMapping("/{postNum}")
     public ResponseEntity<?> modifyFairPost(
             @PathVariable(value = "postNum") int postNum,
             @RequestBody FairDTO modifyInfo) {
 
-        /* 수정할 게시글에서 가져온 작성 시간이 현재 시각과 일치하지 않으면 현재시각으로 변경 */
-        if (modifyInfo.getFairWritedate() != LocalDateTime.now())
-            modifyInfo.setFairWritedate(LocalDateTime.now());
+        modifyInfo.setFairWritedate(LocalDateTime.now());
 
         fairService.modifyFairPost(postNum, modifyInfo);
 
@@ -62,5 +57,16 @@ public class FairController {
     /* 게시글 사용여부 수정 (관리자) */
     
     /* 게시글 삭제 */
+
+    /* VO -> DTO 로 만들어 주는 메소드 */
+    private FairDTO transferVOtoDTO(RegistFairInfo postInfo) {
+
+        FairDTO newPostInfo = modelMapper.map(postInfo, FairDTO.class);
+        newPostInfo.setFairWritedate(LocalDateTime.now());
+        newPostInfo.setUseAcceptance(1);
+        newPostInfo.setMemberCode(1);
+
+        return newPostInfo;
+    }
 
 }

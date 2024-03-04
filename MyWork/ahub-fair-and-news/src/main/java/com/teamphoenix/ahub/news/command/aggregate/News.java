@@ -1,4 +1,4 @@
-package com.teamphoenix.ahub.news.command.entity;
+package com.teamphoenix.ahub.news.command.aggregate;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

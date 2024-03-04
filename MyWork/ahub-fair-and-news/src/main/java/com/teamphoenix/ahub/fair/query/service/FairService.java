@@ -2,14 +2,14 @@ package com.teamphoenix.ahub.fair.query.service;
 
 import com.teamphoenix.ahub.fair.query.dto.FairDTO;
 import com.teamphoenix.ahub.fair.query.mapper.FairMapper;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service(value = "queryFairService")
-@Log4j2
+@Slf4j
 public class FairService {
 
     private final FairMapper fairMapper;
@@ -26,7 +26,7 @@ public class FairService {
 
         // fairId 의 밸류가 넘어와서 getPostNum 에 저장됨
         FairDTO result = fairMapper.getFairPost(fairId);
-        log.info("반환된 result 값 : {}", result);
+//        log.info("반환된 result 값 : {}", result);
 
         return result;
     }
@@ -56,7 +56,7 @@ public class FairService {
     public List<FairDTO> findPostsByCondition(FairDTO searchInfo) {
 
             List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
-            log.info("result 결과물 : {}", result);
+//            log.info("result 결과물 : {}", result);
             return result;
 
     }

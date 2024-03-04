@@ -1,4 +1,4 @@
-package com.teamphoenix.ahub.fair.command.entity;
+package com.teamphoenix.ahub.fair.command.aggregate;
 
 
 import jakarta.persistence.*;
