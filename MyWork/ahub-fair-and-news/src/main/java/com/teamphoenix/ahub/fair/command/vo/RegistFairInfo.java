@@ -12,27 +12,38 @@ import java.util.Objects;
 /* 이 패키지의 VO는 불변 객체나 그런 개념을 그렇게 중요시 하지 않는다. aggregate 패키지의 vo클래스에서 중시할 것 */
 public class RegistFairInfo {
 
-    private String title;
-    private String content;
+    private String fairTitle;
+    private String fairContent;
 
-    public RegistFairInfo(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public RegistFairInfo() {
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public RegistFairInfo(String fairTitle, String fairContent) {
+        this.fairTitle = fairTitle;
+        this.fairContent = fairContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getFairTitle() {
+        return fairTitle;
+    }
+
+    public void setFairTitle(String fairTitle) {
+        this.fairTitle = fairTitle;
+    }
+
+    public String getFairContent() {
+        return fairContent;
+    }
+
+    public void setFairContent(String fairContent) {
+        this.fairContent = fairContent;
     }
 
     @Override
     public String toString() {
         return "RegistFairInfo{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                "fairTitle='" + fairTitle + '\'' +
+                ", fairContent='" + fairContent + '\'' +
                 '}';
     }
 }

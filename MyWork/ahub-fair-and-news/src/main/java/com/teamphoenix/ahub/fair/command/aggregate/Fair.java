@@ -38,7 +38,9 @@ public class Fair {
     @Column(name = "member_code", columnDefinition = "default 1")
     private int memberCode;
 
+
     /* Fair 게시글 등록용 생성자 */
+
     public Fair(String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode) {
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
@@ -47,5 +49,16 @@ public class Fair {
         this.memberCode = memberCode;
     }
 
+    /* 게시글 수정을 위한 setter ( title, content, writedate만 ) */
+    public void setFairTitle(String fairTitle) {
+        this.fairTitle = fairTitle;
+    }
 
+    public void setFairContent(String fairContent) {
+        this.fairContent = fairContent;
+    }
+
+    public void setFairWritedate(LocalDateTime fairWritedate) {
+        this.fairWritedate = fairWritedate;
+    }
 }
