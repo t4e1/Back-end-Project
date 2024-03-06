@@ -1,10 +1,8 @@
 package com.teamphoenix.ahub.fair.query.service;
 
 import com.teamphoenix.ahub.fair.query.dto.FairDTO;
-import com.teamphoenix.ahub.fair.query.service.FairService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,15 +10,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Map;
 import java.util.stream.Stream;
 
 
 @SpringBootTest
-class FairServiceTest {
+class FairServiceImplImplTest {
 
     @Autowired
-    private FairService fairService;
+    private FairServiceImpl fairServiceImpl;
 
 //    static Stream<Arguments> getPostNum() {
 //
@@ -47,7 +44,7 @@ class FairServiceTest {
     @ValueSource(ints = {1, 3, 8})
     void findFairPostTest(int fairId) {
         Assertions.assertDoesNotThrow(
-                () -> fairService.getFairPost(fairId)
+                () -> fairServiceImpl.getFairPost(fairId)
         );
     }
 
@@ -64,7 +61,7 @@ class FairServiceTest {
     @MethodSource("getSearchInfo")
     void selectPostByConditionTest(FairDTO getInfo) {
         Assertions.assertDoesNotThrow(
-                () -> fairService.findPostsByCondition(getInfo)
+                () -> fairServiceImpl.findPostsByCondition(getInfo)
         );
     }
 

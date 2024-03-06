@@ -1,4 +1,4 @@
-package com.teamphoenix.ahub.fair.query.mapper;
+package com.teamphoenix.ahub.fair.query.repository;
 
 import com.teamphoenix.ahub.fair.query.dto.FairDTO;
 import org.apache.ibatis.annotations.Mapper;

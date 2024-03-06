@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamphoenix.ahub.fair.query.mapper.FairMapper">
+<mapper namespace="com.teamphoenix.ahub.fair.query.repository.FairMapper">
 
     <resultMap id="selectFairList" type="com.teamphoenix.ahub.fair.query.dto.FairDTO">
         <id property="fairId" column="fair_id"/>

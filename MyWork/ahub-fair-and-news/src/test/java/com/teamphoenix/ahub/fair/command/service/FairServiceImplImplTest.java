@@ -16,24 +16,24 @@ import java.util.stream.Stream;
 
 
 @SpringBootTest
-class FairServiceTest {
+class FairServiceImplImplTest {
 
     @Autowired
-    private FairService fairService;
+    private FairServiceImpl fairServiceImpl;
 
     static Stream<Arguments> getFairDTO() {
 
         return Stream.of(
-                Arguments.of(new FairDTO("위스키 페어 게시물 등록2", "위스키 페어 게시물을 등록합니다.", null, 0, 0)),
-                Arguments.of(new FairDTO("맥주 페어 게시물 등록3", "맥주 페어 게시물을 등록합니다.", null, 0, 0)),
-                Arguments.of(new FairDTO("와인 페어 게시물 등록4", "와인 페어 게시물을 등록합니다.", null, 0, 0))
+                Arguments.of(new FairDTO("위스키 페어 게시물 등록2", "위스키 페어 게시물을 등록합니다.", LocalDateTime.now(), 1, 1)),
+                Arguments.of(new FairDTO("맥주 페어 게시물 등록3", "맥주 페어 게시물을 등록합니다.", LocalDateTime.now(), 1, 1)),
+                Arguments.of(new FairDTO("와인 페어 게시물 등록4", "와인 페어 게시물을 등록합니다.", LocalDateTime.now(), 1, 1))
         );
     }
 
     static Stream<Arguments> getModifyInfo() {
 
         return Stream.of(
-                Arguments.of(9, new FairDTO(9,"위스키 페어 게시물 등록2", "위스키 페어 게시물을 등록합니다.", LocalDateTime.now(), 1, 1))
+                Arguments.of(8, new FairDTO(8,"위스키 페어 게시물 등록2", "위스키 페어 게시물을 등록합니다.", LocalDateTime.now(), 1, 1))
         );
     }
 
@@ -44,7 +44,7 @@ class FairServiceTest {
     void registFairPostTest(FairDTO fairInfo) {
 
         Assertions.assertDoesNotThrow(
-                () -> fairService.registFairPost(fairInfo)
+                () -> fairServiceImpl.registFairPost(fairInfo)
         );
     }
 
@@ -55,7 +55,7 @@ class FairServiceTest {
     void modifyFairPostTest(int postNum, FairDTO modifyInfo) {
 
         Assertions.assertDoesNotThrow(
-                () -> fairService.modifyFairPost(postNum, modifyInfo)
+                () -> fairServiceImpl.modifyFairPost(postNum, modifyInfo)
         );
     }
 
@@ -65,7 +65,7 @@ class FairServiceTest {
     @Transactional
     void deleteFairPostTest(int postNum) {
         Assertions.assertDoesNotThrow(
-                () -> fairService.removeFairPost(postNum)
+                () -> fairServiceImpl.removeFairPost(postNum)
         );
 
     }
