@@ -37,11 +37,10 @@ public class FairController {
 
         FairDTO result = fairService.registFairPost(newFairPost);
 
-        ResponseStatus respMessage = new ResponseStatus();
-        respMessage.setCode("201, CREATED");
-        respMessage.setMessage("Success to add new post.");
-        respMessage.setUrl("http://localhost:8000/board/fairs/lists");
-        respMessage.setResult(result);
+        ResponseStatus respMessage = createResponseStatus("201, CREATED"
+                ,"Success to add new post."
+                ,"http://localhost:8000/board/fairs/lists"
+                ,result );
 
         return ResponseEntity
                 .status(HttpStatus.CREATED).body(respMessage);
@@ -57,17 +56,15 @@ public class FairController {
 
         fairService.modifyFairPost(postNum, modifyInfo);
 
-        ResponseStatus respMessage = new ResponseStatus();
-        respMessage.setCode("200, OK");
-        respMessage.setMessage("Success to update [ " + postNum + " ] fair post.");
-        respMessage.setUrl("http://localhost:8000/board/fairs/lists");
-        respMessage.setResult(modifyInfo);
+        ResponseStatus respMessage = createResponseStatus("200, OK"
+                ,"Success to update [ \" + postNum + \" ] fair post."
+                ,"http://localhost:8000/board/fairs/lists"
+                ,modifyInfo );
 
         return ResponseEntity
                 .status(HttpStatus.OK).body(respMessage);
 
     }
-
 
     /* 게시글 삭제 */
     @DeleteMapping("/{postNum}")
@@ -75,12 +72,16 @@ public class FairController {
 
         fairService.removeFairPost(postNum);
 
-        ResponseStatus respMessage = new ResponseStatus();
-        respMessage.setCode("200, OK");
-        respMessage.setMessage("Success to delete [ " + postNum + " ] fair post.");
-        respMessage.setUrl("http://localhost:8000/board/fairs/lists");
+        ResponseStatus respMessage = createResponseStatus("200, OK"
+                ,"Success to delete [ \" + postNum + \" ] fair post."
+                ,"http://localhost:8000/board/fairs/lists"
+                ,null );
 
         return ResponseEntity
                 .status(HttpStatus.OK).body(respMessage);
+    }
+
+    private ResponseStatus createResponseStatus(String httpStatus, String message, String url, FairDTO result) {
+        return new ResponseStatus(httpStatus.toString(), message, url, result);
     }
 }
