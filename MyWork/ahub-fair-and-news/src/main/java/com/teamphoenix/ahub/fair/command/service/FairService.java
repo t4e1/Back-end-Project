@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface FairService {
     void removeFairPost(int postNum);
 
-    void modifyFairPost(int postNum, FairDTO modifyInfo);
+    FairDTO modifyFairPost(int postNum, FairDTO modifyInfo);
 
     FairDTO registFairPost(FairDTO newFairPost);
 }

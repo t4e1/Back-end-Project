@@ -1,4 +1,4 @@
-package com.teamphoenix.ahub.fair.query.configuration;
+package com.teamphoenix.ahub.fair.query.configure;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;

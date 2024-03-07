@@ -1,15 +1,15 @@
 package com.teamphoenix.ahub.fair.command.service;
 
+import com.teamphoenix.ahub.fair.command.client.MemberServiceClient;
 import com.teamphoenix.ahub.fair.command.dto.FairDTO;
 import com.teamphoenix.ahub.fair.command.aggregate.Fair;
 import com.teamphoenix.ahub.fair.command.repository.FairRepository;
+import com.teamphoenix.ahub.fair.command.vo.ResponseMember;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 
 @Service(value = "CommandFairService")
@@ -18,10 +18,15 @@ public class FairServiceImpl implements FairService{
 
     private final FairRepository fairRepository;
     private final ModelMapper  modelMapper;
+    private final MemberServiceClient memberServiceClient;
+
     @Autowired
-    public FairServiceImpl(FairRepository fairRepository, ModelMapper modelMapper) {
+    public FairServiceImpl(FairRepository fairRepository,
+                           ModelMapper modelMapper,
+                           MemberServiceClient memberServiceClient) {
         this.fairRepository = fairRepository;
         this.modelMapper = modelMapper;
+        this.memberServiceClient = memberServiceClient;
     }
 
     @Transactional
@@ -51,19 +56,31 @@ public class FairServiceImpl implements FairService{
 
     /* 게시글 수정 메소드 */
     @Transactional
-    public void modifyFairPost(int postNum, FairDTO modifyInfo) {
+    public FairDTO modifyFairPost(int postNum, FairDTO modifyInfo) {
 
         Fair oldPost = fairRepository.findById(postNum).orElseThrow(IllegalArgumentException::new);    // postNum에 해당하는 게시글 불러와서 영속성 컨텍스트에 스냅샷 객체로 저장
         oldPost.setFairTitle(modifyInfo.getFairTitle());
         oldPost.setFairContent(modifyInfo.getFairContent());
         oldPost.setFairWritedate(modifyInfo.getFairWritedate());
 
+        FairDTO result = modelMapper.map(oldPost, FairDTO.class);
+
+        ResponseMember memberVO = memberServiceClient.getWriterInfo(modifyInfo.getMemberCode());
+        log.info(" Fegin Client 작동하나? : {}", memberVO);
+
+        result.setWriterInfo(memberVO);
+
+        return result;
+
         /* @Transactional 에 의해 메소드 종료 시 자동으로 flush & commit */
     }
 
     /* 게시글 삭제 메소드 */
+    @Transactional
     public void removeFairPost(int postNum) {
 
         fairRepository.deleteById(postNum);
     }
+
+
 }

@@ -33,7 +33,7 @@ public class FairController {
         FairDTO newFairPost = modelMapper.map(postInfo, FairDTO.class);
         newFairPost.setFairWritedate(LocalDateTime.now());
         newFairPost.setUseAcceptance(1);
-        newFairPost.setMemberCode(1);
+        newFairPost.setMemberCode(1); // 차후 토큰을 통해 userCode를 받아오는 것도 필요하다.
 
         FairDTO result = fairService.registFairPost(newFairPost);
 
@@ -54,16 +54,15 @@ public class FairController {
 
         modifyInfo.setFairWritedate(LocalDateTime.now());
 
-        fairService.modifyFairPost(postNum, modifyInfo);
+        FairDTO result = fairService.modifyFairPost(postNum, modifyInfo);
 
         ResponseStatus respMessage = createResponseStatus("200, OK"
-                ,"Success to update [ \" + postNum + \" ] fair post."
+                ,"Success to update [ " + postNum + " ] fair post."
                 ,"http://localhost:8000/board/fairs/lists"
-                ,modifyInfo );
+                ,result );
 
         return ResponseEntity
                 .status(HttpStatus.OK).body(respMessage);
-
     }
 
     /* 게시글 삭제 */
@@ -73,7 +72,7 @@ public class FairController {
         fairService.removeFairPost(postNum);
 
         ResponseStatus respMessage = createResponseStatus("200, OK"
-                ,"Success to delete [ \" + postNum + \" ] fair post."
+                ,"Success to delete [ " + postNum + " ] fair post."
                 ,"http://localhost:8000/board/fairs/lists"
                 ,null );
 

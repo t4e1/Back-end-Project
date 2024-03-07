@@ -1,6 +1,6 @@
 package com.teamphoenix.ahub.fair.command.dto;
 
-import lombok.*;
+import com.teamphoenix.ahub.fair.command.vo.ResponseMember;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +12,7 @@ public class FairDTO {
     private java.time.LocalDateTime fairWritedate;
     private int useAcceptance;
     private int memberCode;
+    private ResponseMember writerInfo;
 
     public FairDTO() {
     }
@@ -31,6 +32,16 @@ public class FairDTO {
         this.fairWritedate = fairWritedate;
         this.useAcceptance = useAcceptance;
         this.memberCode = memberCode;
+    }
+
+    public FairDTO(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate, int useAcceptance, int memberCode, ResponseMember writerInfo) {
+        this.fairId = fairId;
+        this.fairTitle = fairTitle;
+        this.fairContent = fairContent;
+        this.fairWritedate = fairWritedate;
+        this.useAcceptance = useAcceptance;
+        this.memberCode = memberCode;
+        this.writerInfo = writerInfo;
     }
 
     public int getFairId() {
@@ -81,6 +92,14 @@ public class FairDTO {
         this.memberCode = memberCode;
     }
 
+    public ResponseMember getWriterInfo() {
+        return writerInfo;
+    }
+
+    public void setWriterInfo(ResponseMember writerInfo) {
+        this.writerInfo = writerInfo;
+    }
+
     @Override
     public String toString() {
         return "FairDTO{" +
@@ -90,6 +109,7 @@ public class FairDTO {
                 ", fairWritedate=" + fairWritedate +
                 ", useAcceptance=" + useAcceptance +
                 ", memberCode=" + memberCode +
+                ", writerInfo=" + writerInfo +
                 '}';
     }
 }

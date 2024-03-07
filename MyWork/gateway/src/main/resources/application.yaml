@@ -6,8 +6,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:10001/eureka
-
+      defaultZone: http://localhost:10000/eureka
 
 spring:
   application:
@@ -15,19 +14,39 @@ spring:
   cloud:
     gateway:
       routes:
-        - id:
-          uri:
+        # Fair Service GET
+        - id: fair-get
+          uri: lb://FAIR-AND-NEWS-SERVICE
           predicates:
-            - Path=/fair/**
+            - Path=/board/fairs/**
             - Method=GET
           filters:
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
 
-        - id:
-          uri:
+        # Fair Service POST, PUT, DELETE
+        - id: fair-modify
+          uri: lb://FAIR-AND-NEWS-SERVICE
           predicates:
-            - Path=/fair/**
-            - Method=POST
+            - Path=/board/fairs/**
+            - Method=POST, PUT, DELETE
           filters:
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-            -
+            - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: member-modify
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/member/**
+#            - Method=POST, PUT, DELETE
+
+        - id: login
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/login
+            - Method=POST
+
+
+
+
+token:
+  sercretKey: k/3f0rHITyFhkBQWfa7rlSAQ3s07wIgj7pUGgq5Q4EXbihvcPPapnHnKQAWV+u3mXJzIBQ9Cm++F0JPEHIv80g==
