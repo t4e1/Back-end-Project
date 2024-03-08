@@ -33,7 +33,7 @@ spring:
             - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
             - AuthorizationHeaderFilter
 
-        - id: member-modify
+        - id: member
           uri: lb://MEMBER-SERVICE
           predicates:
             - Path=/member/**

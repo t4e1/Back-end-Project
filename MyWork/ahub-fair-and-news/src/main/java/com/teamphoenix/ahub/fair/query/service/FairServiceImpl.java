@@ -1,11 +1,14 @@
 package com.teamphoenix.ahub.fair.query.service;
 
+import com.teamphoenix.ahub.fair.command.client.MemberServiceClient;
+import com.teamphoenix.ahub.fair.command.vo.ResponseMember;
 import com.teamphoenix.ahub.fair.query.dto.FairDTO;
 import com.teamphoenix.ahub.fair.query.repository.FairMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service(value = "queryFairService")
@@ -13,9 +16,13 @@ import java.util.List;
 public class FairServiceImpl implements FairService {
 
     private final FairMapper fairMapper;
+    private final MemberServiceClient memberServiceClient;
+
     @Autowired
-    public FairServiceImpl(FairMapper fairMapper) {
+    public FairServiceImpl(FairMapper fairMapper,
+                           MemberServiceClient memberServiceClient) {
         this.fairMapper = fairMapper;
+        this.memberServiceClient = memberServiceClient;
     }
 
     /* 조회 : 사용자가 웹 브라우저에서 행사 정보 게시글을 클릭했을 때,
@@ -27,6 +34,9 @@ public class FairServiceImpl implements FairService {
         // fairId 의 밸류가 넘어와서 getPostNum 에 저장됨
         FairDTO result = fairMapper.getFairPost(fairId);
 //        log.info("반환된 result 값 : {}", result);
+
+        ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
+        result.setWriterId(responseMember.getMemberId());
 
         return result;
     }
@@ -55,8 +65,42 @@ public class FairServiceImpl implements FairService {
      * */
     public List<FairDTO> findPostsByCondition(FairDTO searchInfo) {
 
+        if (searchInfo.getWriterId() != null) {
+            String writerId = searchInfo.getWriterId();
+            System.out.println("writerId = " + writerId);
+
+            int searchCode = memberServiceClient.getWriterCode(writerId);
+            searchInfo.setMemberCode(searchCode);
+        }
+
+        System.out.println("쿼리 조회 조건 searchInfo = " + searchInfo);
+
         List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
 //            log.info("result 결과물 : {}", result);
+        System.out.println("==================result = " + result);
+
+        List<String> codeList = new ArrayList<>();
+
+        for (FairDTO fairDTO : result) {
+            String writerCode = String.valueOf(fairDTO.getMemberCode());
+
+            codeList.add(writerCode);
+        }
+
+        System.out.println("codeList = " + codeList);
+
+        List<String> idList = memberServiceClient.getWriterList(codeList);
+
+        System.out.println("=======================idList = " + idList);
+
+        for (int i = 0; i < result.size(); i++) {
+
+            FairDTO fairDTO = result.get(i);
+            fairDTO.setWriterId(idList.get(i));
+        }
+
+        System.out.println("=====================final result = " + result);
+
         return result;
 
     }

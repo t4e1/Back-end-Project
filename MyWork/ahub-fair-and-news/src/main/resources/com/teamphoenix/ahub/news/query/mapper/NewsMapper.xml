@@ -8,9 +8,9 @@
         <id property="newsId" column="news_id"/>
         <result property="newsTitle" column="news_title"/>
         <result property="newsWritedate" column="news_writedate"/>
+        <result property="memberCode" column="member_code"/>
     </resultMap>
     <resultMap id="getOrdinaryView" type="com.teamphoenix.ahub.news.query.dto.NewsDTO" extends="searchNewsByCondition">
-        <result property="memberCode" column="member_code"/>
         <result property="newsContent" column="news_content"/>
     </resultMap>
 
@@ -30,6 +30,7 @@
                F.news_id
              , F.news_title
              , F.news_writedate
+             , F.member_code
           FROM news F
         <where>
             <if test="newsTitle neq null and newsContent eq null">

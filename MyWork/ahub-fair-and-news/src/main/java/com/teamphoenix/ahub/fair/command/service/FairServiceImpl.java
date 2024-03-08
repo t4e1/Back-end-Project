@@ -51,6 +51,9 @@ public class FairServiceImpl implements FairService{
                 fair.getMemberCode()
         );
 
+        ResponseMember memberInfo = memberServiceClient.getWriterInfo(result.getMemberCode());
+        result.setWriterInfo(memberInfo);
+
         return result;
     }
 

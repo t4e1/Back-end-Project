@@ -90,11 +90,18 @@
         WHERE MEMBER_ID = #{ memberId }
     </select>
 
-    <select id="memberLogin" resultMap="memberResult" parameterType="map">
+<!-- Fair&News 프로젝트 호출용 매퍼 -->
+    <select id="findMemberId" resultType="string" parameterType="_int">
         SELECT
-        MEMBER_NAME
-        , MEMBER_ID
-        FROM MEMBERINFO
-        WHERE MEMBER_ID = #{ memberId } AND MEMBER_PWD = #{ memberPwd }
+               MEMBER_ID
+          FROM MEMBERINFO
+         WHERE MEMBER_CODE = #{ memberCode }
+    </select>
+
+    <select id="selectMemberCode" resultType="int" parameterType="String">
+        SELECT
+               MEMBER_CODE
+          FROM MEMBERINFO
+         WHERE MEMBER_ID = #{ memberId }
     </select>
 </mapper>

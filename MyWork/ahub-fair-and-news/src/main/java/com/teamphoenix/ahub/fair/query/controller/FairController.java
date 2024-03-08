@@ -5,6 +5,7 @@ import com.teamphoenix.ahub.fair.query.service.FairService;
 import com.teamphoenix.ahub.fair.query.vo.ResponseFindPost;
 import com.teamphoenix.ahub.fair.query.vo.ResponseList;
 import com.teamphoenix.ahub.fair.query.vo.ResponseSearchList;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,13 +56,14 @@ public class FairController {
     @GetMapping("/lists")
     public ResponseEntity<ResponseSearchList> findPostsByCondition(
             @RequestParam(value = "st", required = false) String title,
-            @RequestParam(value = "sc", required = false) String content) {
+            @RequestParam(value = "sc", required = false) String content,
+            @RequestParam(value = "id", required = false) String id) {
 
-        FairDTO searchInfo = new FairDTO(title, content);
+        FairDTO searchInfo = new FairDTO(title, content, id);
+        System.out.println("searchInfo = " + searchInfo);
         List<FairDTO> resultList = fairService.findPostsByCondition(searchInfo);
+
         List<ResponseList> responseLists = doDTOToList(resultList);
-
-
 
         ResponseSearchList result = new ResponseSearchList();
         result.setCode("200, OK");
@@ -81,10 +83,12 @@ public class FairController {
             responseList.setFairId(fairDTO.getFairId());
             responseList.setFairTitle(fairDTO.getFairTitle());
             responseList.setFairWritedate(fairDTO.getFairWritedate());
+            responseList.setWriteId(fairDTO.getWriterId());
 
             responseLists.add(responseList);
         }
 
         return responseLists;
     }
+
 }
