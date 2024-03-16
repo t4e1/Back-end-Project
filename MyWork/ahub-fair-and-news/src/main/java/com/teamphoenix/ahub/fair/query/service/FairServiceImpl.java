@@ -36,6 +36,9 @@ public class FairServiceImpl implements FairService {
         ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
         result.setWriterId(responseMember.getMemberId());
 
+        ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
+        result.setWriterId(responseMember.getMemberId());
+
         return result;
     }
 
@@ -43,6 +46,44 @@ public class FairServiceImpl implements FairService {
 
         if (searchInfo.getWriterId() != null) {
             String writerId = searchInfo.getWriterId();
+<<<<<<< HEAD
+=======
+            System.out.println("writerId = " + writerId);
+
+            int searchCode = memberServiceClient.getWriterCode(writerId);
+            searchInfo.setMemberCode(searchCode);
+        }
+
+        System.out.println("쿼리 조회 조건 searchInfo = " + searchInfo);
+
+        List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
+//            log.info("result 결과물 : {}", result);
+        System.out.println("==================result = " + result);
+
+        List<String> codeList = new ArrayList<>();
+
+        for (FairDTO fairDTO : result) {
+            String writerCode = String.valueOf(fairDTO.getMemberCode());
+
+            codeList.add(writerCode);
+        }
+
+        System.out.println("codeList = " + codeList);
+
+        List<String> idList = memberServiceClient.getWriterList(codeList);
+
+        System.out.println("=======================idList = " + idList);
+
+        for (int i = 0; i < result.size(); i++) {
+
+            FairDTO fairDTO = result.get(i);
+            fairDTO.setWriterId(idList.get(i));
+        }
+
+        System.out.println("=====================final result = " + result);
+
+        return result;
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
 
             ResponseMember resp = memberServiceClient.getWriterCode(writerId);
 

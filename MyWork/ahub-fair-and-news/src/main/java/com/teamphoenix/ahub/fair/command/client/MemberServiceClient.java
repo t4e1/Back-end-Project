@@ -20,4 +20,9 @@ public interface MemberServiceClient {
     @GetMapping("/member/findByMemberId/{memberId}")
     ResponseMember getWriterCode(@PathVariable("memberId") String memberId);
 
+    @GetMapping("/member/request-list")
+    List<String> getWriterList(@RequestBody List<String> writerCodes);
+
+    @GetMapping("/member/request-code/{userId}")
+    int getWriterCode(@PathVariable("userId") String userId);
 }

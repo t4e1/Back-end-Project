@@ -6,7 +6,10 @@ import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
+=======
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -26,7 +29,10 @@ public class BearerTokenInterceptor implements HandlerInterceptor {
 
         String authorizationHeader = request.getHeader("Authorization");
 
+<<<<<<< HEAD
         System.out.println("secretkey 받아오나???? " + env.getProperty("token.secretKey"));
+=======
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String token = authorizationHeader.substring(7);
 

@@ -32,17 +32,31 @@ public class FairController {
     public ResponseEntity<ResponseStatus> addNewPost(@RequestBody RequestRegist postInfo,
                                                      @RequestAttribute("claims") Claims idInfo) {
 
+<<<<<<< HEAD
+=======
+//        System.out.println("indInfo에서 sub 값 받아올 수 있을까?? : " + idInfo.getSubject());
+//        System.out.println("indInfo에서 aud 값 받아올 수 있을까?? : " + idInfo.getAudience());
+
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
         int writerCode = Integer.parseInt(idInfo.getAudience());
 
         FairDTO newFairPost = modelMapper.map(postInfo, FairDTO.class);
         newFairPost.setFairWritedate(LocalDateTime.now());
         newFairPost.setUseAcceptance(1);
+<<<<<<< HEAD
         newFairPost.setMemberCode(writerCode);
+=======
+        newFairPost.setMemberCode(writerCode); // 차후 토큰을 통해 userCode를 받아오는 것도 필요하다. -> 구현
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
 
         FairDTO result = fairService.registFairPost(newFairPost);
 
         ResponseStatus respMessage = createResponseStatus("201, CREATED"
+<<<<<<< HEAD
                 ,"Success to add new post. Post num [" + result.getFairId() + "]"
+=======
+                ,"Success to add new post. Post num [ " + result.getFairId() + " ]"
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
                 ,"http://localhost:8000/board/fairs/lists"
                 , result);
 

@@ -1,0 +1,52 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:10000/eureka
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+        # Fair Service GET
+        - id: fair-get
+          uri: lb://FAIR-AND-NEWS-SERVICE
+          predicates:
+            - Path=/board/fairs/**
+            - Method=GET
+          filters:
+            - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
+
+        # Fair Service POST, PUT, DELETE
+        - id: fair-modify
+          uri: lb://FAIR-AND-NEWS-SERVICE
+          predicates:
+            - Path=/board/fairs/**
+            - Method=POST, PUT, DELETE
+          filters:
+            - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: member
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/member/**
+#            - Method=POST, PUT, DELETE
+
+        - id: login
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/login
+            - Method=POST
+
+
+
+
+token:
+  sercretKey: k/3f0rHITyFhkBQWfa7rlSAQ3s07wIgj7pUGgq5Q4EXbihvcPPapnHnKQAWV+u3mXJzIBQ9Cm++F0JPEHIv80g==

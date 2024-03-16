@@ -17,4 +17,8 @@ public interface MemberMapper {
     MemberDTO selectMyprofile(Map<String, String> memberId);
 
     MemberDTO memberLogin(Map<String, String> memberLogin);
+
+    String findMemberId(int memberCode);
+
+    int selectMemberCode(String memberId);
 }

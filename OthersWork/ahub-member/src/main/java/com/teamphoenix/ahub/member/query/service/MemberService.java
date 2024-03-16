@@ -5,6 +5,7 @@ import com.teamphoenix.ahub.member.query.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,5 +66,21 @@ public class MemberService {
         MemberDTO member = memberMapper.memberLogin(memberLogin);
 
         return member;
+    }
+
+    public List<String> findMemberIdList(List<Integer> findCode) {
+
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < findCode.size(); i++) {
+            result.add(memberMapper.findMemberId(findCode.get(i)));
+        }
+        System.out.println("================================= result = " + result);
+        return result;
+    }
+
+    public int findMemberCode(String memberId) {
+
+        return memberMapper.selectMemberCode(memberId);
     }
 }

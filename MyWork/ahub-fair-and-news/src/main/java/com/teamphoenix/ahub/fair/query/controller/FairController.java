@@ -5,6 +5,7 @@ import com.teamphoenix.ahub.fair.query.service.FairService;
 import com.teamphoenix.ahub.fair.query.vo.ResponseFindPost;
 import com.teamphoenix.ahub.fair.query.vo.ResponseList;
 import com.teamphoenix.ahub.fair.query.vo.ResponseSearchList;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +49,7 @@ public class FairController {
     public ResponseEntity<ResponseSearchList> findPostsByCondition(
             @RequestParam(value = "st", required = false) String title,
             @RequestParam(value = "sc", required = false) String content,
+<<<<<<< HEAD
             @RequestParam(value = "tc", required = false) String titleContent,
             @RequestParam(value = "id", required = false) String id) {
 
@@ -58,6 +60,12 @@ public class FairController {
             searchInfo.setFairContent(titleContent);
         }
 
+=======
+            @RequestParam(value = "id", required = false) String id) {
+
+        FairDTO searchInfo = new FairDTO(title, content, id);
+        System.out.println("searchInfo = " + searchInfo);
+>>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
         List<FairDTO> resultList = fairService.findPostsByCondition(searchInfo);
 
         List<ResponseList> responseLists = doDTOToList(resultList);

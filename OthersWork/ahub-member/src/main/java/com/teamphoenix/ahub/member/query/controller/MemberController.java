@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import org.modelmapper.ModelMapper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -74,4 +76,25 @@ public class MemberController {
 
         return ResponseEntity.status(HttpStatus.OK).body(responseMember);
     }
+
+    /* member_id list 반환하는 메소드 (Feign Client용) */
+    @PostMapping("/request-list")
+    public List<String> getWriterList(@RequestBody List<String> writerCodes) {
+
+        List<Integer> findCode = new ArrayList<>();
+
+        for (String code : writerCodes) {
+            int condition = Integer.parseInt(code);
+            findCode.add(condition);
+        }
+
+        return memberService.findMemberIdList(findCode);
+    }
+
+    @GetMapping("/request-code/{userId}")
+    public int getWriterCode(@PathVariable("userId") String memberId) {
+
+        return memberService.findMemberCode(memberId);
+    }
+
 }

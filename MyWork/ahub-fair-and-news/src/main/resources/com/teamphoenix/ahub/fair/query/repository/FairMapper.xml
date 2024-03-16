@@ -49,6 +49,9 @@
             <if test="memberCode neq 0">
                 F.member_code = #{memberCode}
             </if>
+            <if test="memberCode neq 0">
+                F.member_code = #{memberCode}
+            </if>
         </where>
     </select>
 </mapper>
