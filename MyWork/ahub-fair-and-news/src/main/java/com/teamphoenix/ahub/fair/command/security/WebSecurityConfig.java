@@ -30,12 +30,14 @@ public class WebSecurityConfig {
         http.csrf((csrf) -> csrf.disable());
 
         http.authorizeHttpRequests((auth) -> auth
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/fairs/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/news/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
                 );
 
-
         return http.build();
-
     }
 
 }

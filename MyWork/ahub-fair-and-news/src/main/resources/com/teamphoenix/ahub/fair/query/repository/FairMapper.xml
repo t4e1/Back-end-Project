@@ -8,9 +8,10 @@
         <id property="fairId" column="fair_id"/>
         <result property="fairTitle" column="fair_title"/>
         <result property="fairWritedate" column="fair_writedate"/>
+        <result property="useAcceptance" column="use_acceptance"/>
+        <result property="memberCode" column="member_code"/>
     </resultMap>
     <resultMap id="getOrdinaryView" type="com.teamphoenix.ahub.fair.query.dto.FairDTO" extends="selectFairList">
-        <result property="memberCode" column="member_code"/>
         <result property="fairContent" column="fair_content"/>
     </resultMap>
 
@@ -20,9 +21,10 @@
              , F.fair_title
              , F.fair_content
              , F.fair_writedate
+             , F.use_acceptance
              , F.member_code
           FROM fair F
-         WHERE F.fair_id = #{fairId} ;
+         WHERE F.fair_id = #{fairId}
     </select>
 
     <select id="selectPostsByCondition" parameterType="com.teamphoenix.ahub.fair.query.dto.FairDTO" resultMap="selectFairList">
@@ -30,17 +32,22 @@
                F.fair_id
              , F.fair_title
              , F.fair_writedate
+             , F.use_acceptance
+             , F.member_code
           FROM fair F
         <where>
             <if test="fairTitle neq null and fairContent eq null">
-               F.fair_title LIKE CONCAT ('%', #{fairTitle}, '%')
+                F.fair_title LIKE CONCAT ('%', #{fairTitle}, '%')
             </if>
             <if test="fairContent neq null and fairTitle eq null">
                 F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
             </if>
             <if test="fairTitle neq null and fairContent neq null">
                 F.fair_title LIKE CONCAT('%', #{fairTitle}, '%')
-            AND F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
+             OR F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
+            </if>
+            <if test="memberCode neq 0">
+                F.member_code = #{memberCode}
             </if>
         </where>
     </select>

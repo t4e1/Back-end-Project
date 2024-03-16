@@ -8,6 +8,7 @@ public class ResponseFindPost {
     private String message;
     private String url;
     private FairDTO result;
+    private String writerId;
 
     public ResponseFindPost() {
     }

@@ -10,6 +10,7 @@ public class NewsDTO {
     private LocalDateTime newsWritedate;
     private int useAcceptance;
     private int memberCode;
+    private String writerId;
 
     public NewsDTO() {
     }
@@ -19,6 +20,12 @@ public class NewsDTO {
         this.newsContent = newsContent;
     }
 
+    public NewsDTO(String newsTitle, String newsContent, String writerId) {
+        this.newsTitle = newsTitle;
+        this.newsContent = newsContent;
+        this.writerId = writerId;
+    }
+
     public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int memberCode) {
         this.newsId = newsId;
         this.newsTitle = newsTitle;
@@ -26,6 +33,16 @@ public class NewsDTO {
         this.newsWritedate = newsWritedate;
         this.useAcceptance = useAcceptance;
         this.memberCode = memberCode;
+    }
+
+    public NewsDTO(int newsId, String newsTitle, String newsContent, LocalDateTime newsWritedate, int useAcceptance, int memberCode, String writerId) {
+        this.newsId = newsId;
+        this.newsTitle = newsTitle;
+        this.newsContent = newsContent;
+        this.newsWritedate = newsWritedate;
+        this.useAcceptance = useAcceptance;
+        this.memberCode = memberCode;
+        this.writerId = writerId;
     }
 
     public int getNewsId() {
@@ -76,6 +93,14 @@ public class NewsDTO {
         this.memberCode = memberCode;
     }
 
+    public String getWriterId() {
+        return writerId;
+    }
+
+    public void setWriterId(String writerId) {
+        this.writerId = writerId;
+    }
+
     @Override
     public String toString() {
         return "NewsDTO{" +
@@ -84,7 +109,8 @@ public class NewsDTO {
                 ", newsContent='" + newsContent + '\'' +
                 ", newsWritedate=" + newsWritedate +
                 ", useAcceptance=" + useAcceptance +
-                ", member_code=" + memberCode +
+                ", memberCode=" + memberCode +
+                ", writerId='" + writerId + '\'' +
                 '}';
     }
 }

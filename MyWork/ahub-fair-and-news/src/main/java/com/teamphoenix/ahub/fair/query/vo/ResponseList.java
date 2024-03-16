@@ -6,14 +6,16 @@ public class ResponseList {
 
     private int fairId;
     private String fairTitle;
+    private String writeId;
     private LocalDateTime fairWritedate;
 
     public ResponseList() {
     }
 
-    public ResponseList(int fairId, String fairTitle, LocalDateTime fairWritedate) {
+    public ResponseList(int fairId, String fairTitle, String writeId, LocalDateTime fairWritedate) {
         this.fairId = fairId;
         this.fairTitle = fairTitle;
+        this.writeId = writeId;
         this.fairWritedate = fairWritedate;
     }
 
@@ -37,7 +39,14 @@ public class ResponseList {
         return fairWritedate;
     }
 
-    public void setFairWritedate(LocalDateTime fairWritedate) {
-        this.fairWritedate = fairWritedate;
+    public void setFairWritedate(LocalDateTime fairWritedate) {this.fairWritedate = fairWritedate;
+    }
+
+    public String getWriteId() {
+        return writeId;
+    }
+
+    public void setWriteId(String writeId) {
+        this.writeId = writeId;
     }
 }

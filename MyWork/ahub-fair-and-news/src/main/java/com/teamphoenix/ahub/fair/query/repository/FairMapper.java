@@ -12,5 +12,4 @@ public interface FairMapper {
 
     List<FairDTO> selectPostsByCondition(FairDTO searchInfo) ;
 
-//    List<FairDTO> selectAllPosts();
 }

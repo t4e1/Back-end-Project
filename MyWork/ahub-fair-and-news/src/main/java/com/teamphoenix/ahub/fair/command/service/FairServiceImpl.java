@@ -1,8 +1,8 @@
 package com.teamphoenix.ahub.fair.command.service;
 
+import com.teamphoenix.ahub.fair.command.aggregate.Fair;
 import com.teamphoenix.ahub.fair.command.client.MemberServiceClient;
 import com.teamphoenix.ahub.fair.command.dto.FairDTO;
-import com.teamphoenix.ahub.fair.command.aggregate.Fair;
 import com.teamphoenix.ahub.fair.command.repository.FairRepository;
 import com.teamphoenix.ahub.fair.command.vo.ResponseMember;
 import jakarta.transaction.Transactional;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service(value = "CommandFairService")
 @Slf4j
-public class FairServiceImpl implements FairService{
+public class FairServiceImpl implements FairService {
 
     private final FairRepository fairRepository;
     private final ModelMapper  modelMapper;
@@ -29,6 +29,7 @@ public class FairServiceImpl implements FairService{
         this.memberServiceClient = memberServiceClient;
     }
 
+    // 게시글 등록 메소드
     @Transactional
     public FairDTO registFairPost(FairDTO fairInfo) {
 
@@ -40,6 +41,7 @@ public class FairServiceImpl implements FairService{
                 fairInfo.getMemberCode()) ;
 
         fairRepository.save(fair);
+
         fair = fairRepository.findByFairTitle(fairInfo.getFairTitle());
 
         FairDTO result = new FairDTO(
@@ -50,6 +52,9 @@ public class FairServiceImpl implements FairService{
                 fair.getUseAcceptance(),
                 fair.getMemberCode()
         );
+
+        ResponseMember memberInfo = memberServiceClient.getWriterInfo(result.getMemberCode());
+        result.setWriterInfo(memberInfo);
 
         return result;
     }
@@ -65,14 +70,13 @@ public class FairServiceImpl implements FairService{
 
         FairDTO result = modelMapper.map(oldPost, FairDTO.class);
 
+        // 페인 클라이언트로 정보 읽어온다
         ResponseMember memberVO = memberServiceClient.getWriterInfo(modifyInfo.getMemberCode());
-        log.info(" Fegin Client 작동하나? : {}", memberVO);
 
         result.setWriterInfo(memberVO);
 
         return result;
 
-        /* @Transactional 에 의해 메소드 종료 시 자동으로 flush & commit */
     }
 
     /* 게시글 삭제 메소드 */

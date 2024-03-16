@@ -1,60 +1,69 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.3'
-    id 'io.spring.dependency-management' version '1.1.4'
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 ext {
-    springCloudVersion = "2023.0.0"
+	springCloudVersion = "2023.0.0"
 }
 
-group = 'com.teamphoenix'
+group = 'com.teampheonix'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+	sourceCompatibility = '17'
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.projectlombok:lombok'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-    testImplementation 'org.springframework.security:spring-security-test'
-    annotationProcessor('org.projectlombok:lombok')
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-    implementation 'org.modelmapper:modelmapper:3.1.1'
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'    // swagger 적용
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.projectlombok:lombok'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	testImplementation 'org.springframework.security:spring-security-test'
+	annotationProcessor('org.projectlombok:lombok')
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'org.modelmapper:modelmapper:3.1.1'
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'    // swagger 적용
 
-    // jwt 토큰을 생성 / 해석 하는데 필요한 라이브러리들
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
-    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	// jwt 토큰을 생성 / 해석 하는데 필요한 라이브러리들
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	//config 클라이언트용 디펜던시
+	// config 서버 활용 시 추가할 내용(JWT 토큰값 관련 설정 서버 활용)
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	// application.yml 이전에 활용될 설정 파일을 사용하기 위한 디펜던시 추가
+	implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+	// config 서버 추가 후 config 서버 refresh 를 위해 추가한 디펜던시
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 
 }
 
 dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
-    }
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+	}
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }

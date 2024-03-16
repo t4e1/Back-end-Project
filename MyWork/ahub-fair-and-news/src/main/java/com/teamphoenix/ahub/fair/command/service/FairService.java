@@ -1,7 +1,6 @@
 package com.teamphoenix.ahub.fair.command.service;
 
 import com.teamphoenix.ahub.fair.command.dto.FairDTO;
-import org.springframework.data.jpa.repository.Query;
 
 public interface FairService {
     void removeFairPost(int postNum);

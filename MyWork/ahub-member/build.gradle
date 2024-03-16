@@ -1,0 +1,61 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+ext {
+	springCloudVersion = "2023.0.0"
+}
+
+group = 'com.teampheonix'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	testImplementation 'org.springframework.security:spring-security-test'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	// dependency 추가
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	annotationProcessor 'org.projectlombok:lombok'			// 로그 출력시 @Slf4j 어노테이션 사용
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'		// @Entity 사용
+	implementation 'org.modelmapper:modelmapper:3.2.0'	// modelMapper 사용
+
+	// jwt 토큰을 생성 / 해석 하는데 필요한 라이브러리들
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'    // swagger 적용
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
