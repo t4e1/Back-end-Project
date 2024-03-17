@@ -41,10 +41,7 @@ public class NewsServiceImpl implements NewsService {
 
         if (searchInfo.getWriterId() != null) {
             String writerId = searchInfo.getWriterId();
-            System.out.println("writerId = " + writerId);
-
-            ResponseMember resp = memberServiceClient.getWriterCode(writerId);
-            int searchCode = resp.getMemberCode();
+            int searchCode = memberServiceClient.getWriterCode(writerId);
             searchInfo.setMemberCode(searchCode);
         }
 
