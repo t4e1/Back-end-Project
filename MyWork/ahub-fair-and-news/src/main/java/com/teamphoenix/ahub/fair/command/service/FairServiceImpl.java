@@ -61,7 +61,7 @@ public class FairServiceImpl implements FairService {
         // 불러온 객체 DTO로 변환함
         FairDTO returnDTO = new FairDTO (fair.getFairId(), fair.getFairTitle(), fair.getFairContent(),
                 fair.getFairWritedate(), fair.getFairStratdate(), fair.getFairEnddate(), fair.getFairTag1(),
-                fair.getFairTag2(), fair.getFairTag3(), fair.getFairLocation());
+                fair.getFairTag2(), fair.getFairTag3(), fair.getFairLocation(), fair.getMemberCode());
 
         // 반환할 DTO에 저장된 사진 경로 추가하는 부분 필요
 

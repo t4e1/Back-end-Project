@@ -56,7 +56,9 @@ public class FairDTO {
         this.writerInfo = writerInfo;
     }
 
-    public FairDTO(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate, LocalDate fairStartdate, LocalDate fairEnddate, String fairTag1, String fairTag2, String fairTag3, String fairLocation) {
+    public FairDTO(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate,
+                   LocalDate fairStartdate, LocalDate fairEnddate, String fairTag1, String fairTag2,
+                   String fairTag3, String fairLocation, int memberCode) {
         this.fairId = fairId;
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
@@ -67,6 +69,7 @@ public class FairDTO {
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
         this.fairLocation = fairLocation;
+        this.memberCode = memberCode;
     }
 
     public int getFairId() {
