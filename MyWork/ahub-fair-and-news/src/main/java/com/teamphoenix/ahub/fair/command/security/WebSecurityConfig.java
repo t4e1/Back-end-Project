@@ -31,13 +31,10 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests((auth) -> auth
                         .requestMatchers(new AntPathRequestMatcher("/fairs/**")).permitAll()
-<<<<<<< HEAD
                         .requestMatchers(new AntPathRequestMatcher("/news/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
-=======
->>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
                 );
 
         return http.build();

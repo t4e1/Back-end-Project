@@ -49,7 +49,6 @@ public class FairController {
     public ResponseEntity<ResponseSearchList> findPostsByCondition(
             @RequestParam(value = "st", required = false) String title,
             @RequestParam(value = "sc", required = false) String content,
-<<<<<<< HEAD
             @RequestParam(value = "tc", required = false) String titleContent,
             @RequestParam(value = "id", required = false) String id) {
 
@@ -60,12 +59,6 @@ public class FairController {
             searchInfo.setFairContent(titleContent);
         }
 
-=======
-            @RequestParam(value = "id", required = false) String id) {
-
-        FairDTO searchInfo = new FairDTO(title, content, id);
-        System.out.println("searchInfo = " + searchInfo);
->>>>>>> 899d144edbf7259f98b26faf7980e774ce8ba659
         List<FairDTO> resultList = fairService.findPostsByCondition(searchInfo);
 
         List<ResponseList> responseLists = doDTOToList(resultList);
