@@ -19,12 +19,12 @@ public class RequestRegist {
     public RequestRegist() {
     }
 
-    public RequestRegist(String fairTitle, String fairContent, String fairStartDate, String fairEndDate,
+    public RequestRegist(String fairTitle, String fairContent, String fairStartdate, String fairEnddate,
                          String fairTag1, String fairTag2, String fairTag3, String fairLocation, String fairArea) {
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
-        this.fairStartdate = fairStartDate;
-        this.fairEnddate = fairEndDate;
+        this.fairStartdate = fairStartdate;
+        this.fairEnddate = fairEnddate;
         this.fairTag1 = fairTag1;
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
@@ -48,19 +48,19 @@ public class RequestRegist {
         this.fairContent = fairContent;
     }
 
-    public String getFairStartDate() {
+    public String getFairStartdate() {
         return fairStartdate;
     }
 
-    public void setFairStartDate(String fairStartDate) {
+    public void setFairStartdate(String fairStartDate) {
         this.fairStartdate = fairStartDate;
     }
 
-    public String getFairEndDate() {
+    public String getFairEnddate() {
         return fairEnddate;
     }
 
-    public void setFairEndDate(String fairEndDate) {
+    public void setFairEnddate(String fairEndDate) {
         this.fairEnddate = fairEndDate;
     }
 

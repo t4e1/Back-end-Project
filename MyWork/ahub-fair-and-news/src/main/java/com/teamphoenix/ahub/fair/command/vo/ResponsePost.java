@@ -22,6 +22,102 @@ public class ResponsePost {
     public ResponsePost() {
     }
 
+    public String getFairTitle() {
+        return fairTitle;
+    }
+
+    public void setFairTitle(String fairTitle) {
+        this.fairTitle = fairTitle;
+    }
+
+    public String getFairContent() {
+        return fairContent;
+    }
+
+    public void setFairContent(String fairContent) {
+        this.fairContent = fairContent;
+    }
+
+    public String getFairWriteDate() {
+        return fairWriteDate;
+    }
+
+    public void setFairWriteDate(String fairWriteDate) {
+        this.fairWriteDate = fairWriteDate;
+    }
+
+    public String getFairTag1() {
+        return fairTag1;
+    }
+
+    public void setFairTag1(String fairTag1) {
+        this.fairTag1 = fairTag1;
+    }
+
+    public String getFairTag2() {
+        return fairTag2;
+    }
+
+    public void setFairTag2(String fairTag2) {
+        this.fairTag2 = fairTag2;
+    }
+
+    public String getFairTag3() {
+        return fairTag3;
+    }
+
+    public void setFairTag3(String fairTag3) {
+        this.fairTag3 = fairTag3;
+    }
+
+    public LocalDate getFairStartdate() {
+        return fairStartdate;
+    }
+
+    public void setFairStartdate(LocalDate fairStartdate) {
+        this.fairStartdate = fairStartdate;
+    }
+
+    public LocalDate getFaireEnddate() {
+        return faireEnddate;
+    }
+
+    public void setFaireEnddate(LocalDate faireEnddate) {
+        this.faireEnddate = faireEnddate;
+    }
+
+    public String getFairLocation() {
+        return fairLocation;
+    }
+
+    public void setFairLocation(String fairLocation) {
+        this.fairLocation = fairLocation;
+    }
+
+    public String getFairWriterId() {
+        return fairWriterId;
+    }
+
+    public void setFairWriterId(String fairWriterId) {
+        this.fairWriterId = fairWriterId;
+    }
+
+    public String getThumPictureUrl() {
+        return thumPictureUrl;
+    }
+
+    public void setThumPictureUrl(String thumPictureUrl) {
+        this.thumPictureUrl = thumPictureUrl;
+    }
+
+    public List<String> getContentPictures() {
+        return contentPictures;
+    }
+
+    public void setContentPictures(List<String> contentPictures) {
+        this.contentPictures = contentPictures;
+    }
+
     public ResponsePost(String fairTitle, String fairContent, String fairWriteDate,
                         String fairTag1, String fairTag2, String fairTag3, LocalDate fairStartdate,
                         LocalDate faireEnddate, String fairLocation, String fairWriterId,

@@ -56,6 +56,19 @@ public class FairDTO {
         this.writerInfo = writerInfo;
     }
 
+    public FairDTO(int fairId, String fairTitle, String fairContent, LocalDateTime fairWritedate, LocalDate fairStartdate, LocalDate fairEnddate, String fairTag1, String fairTag2, String fairTag3, String fairLocation) {
+        this.fairId = fairId;
+        this.fairTitle = fairTitle;
+        this.fairContent = fairContent;
+        this.fairWritedate = fairWritedate;
+        this.fairStartdate = fairStartdate;
+        this.fairEnddate = fairEnddate;
+        this.fairTag1 = fairTag1;
+        this.fairTag2 = fairTag2;
+        this.fairTag3 = fairTag3;
+        this.fairLocation = fairLocation;
+    }
+
     public int getFairId() {
         return fairId;
     }
@@ -112,19 +125,19 @@ public class FairDTO {
         this.writerInfo = writerInfo;
     }
 
-    public LocalDate getFairStartDate() {
+    public LocalDate getFairStartdate() {
         return fairStartdate;
     }
 
-    public void setFairStartDate(LocalDate fairStartDate) {
+    public void setFairStartdate(LocalDate fairStartDate) {
         this.fairStartdate = fairStartDate;
     }
 
-    public LocalDate getFairEndDate() {
+    public LocalDate getFairEnddate() {
         return fairEnddate;
     }
 
-    public void setFairEndDate(LocalDate fairEndDate) {
+    public void setFairEnddate(LocalDate fairEndDate) {
         this.fairEnddate = fairEndDate;
     }
 

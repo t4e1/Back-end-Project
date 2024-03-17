@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class FairController {
         int writerCode = Integer.parseInt(idInfo.getAudience());
 
         System.out.println("postInfo = " + postInfo);
+        LocalDate startDate = LocalDate.parse(postInfo.getFairStartdate());
+        LocalDate endDate = LocalDate.parse(postInfo.getFairEnddate());
 
         // FairDTO에 화면으로 부터 입력받은 값 + 작성일, 사용여부, 작성자 멤버코드, 섬네일 이미지, 본문 이미지를 담음
         FairDTO newFairPost = modelMapper.map(postInfo, FairDTO.class);
@@ -49,20 +52,24 @@ public class FairController {
         newFairPost.setMemberCode(writerCode);
         newFairPost.setThumImage(thumImage);
         newFairPost.setContentImages(contentImages);
+        newFairPost.setFairStartdate(startDate);
+        newFairPost.setFairEnddate(endDate);
         System.out.println("newFairPost = " + newFairPost);
 
         FairDTO resultDTO = fairService.registFairPost(newFairPost);
 
 
-        // 날짜 -> 파싱해서 YYYY-MM-DD HH-MM-SS 로 바꾸기
+        // 프론트에 반환할 때 날짜 -> 파싱해서 YYYY-MM-DD HH-MM-SS 로 바꾸기
         String writeDate = resultDTO.getFairWritedate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         // 이미지 -> 불러올 url string 으로 바꾸기
+        List<String> imageSources = new ArrayList<>();      // 임시 메소드
+        imageSources.add("www.google.com");
 
         ResponsePost result = new ResponsePost(resultDTO.getFairTitle(), resultDTO.getFairContent(),
                 writeDate, resultDTO.getFairTag1(), resultDTO.getFairTag2(), resultDTO.getFairTag3(),
-                resultDTO.getFairStartDate(), resultDTO.getFairEndDate(), resultDTO.getFairLocation(),
-                resultDTO.getWriterInfo().getMemberId(), "S3 섬네일 이미지 경로", new ArrayList<String>());
+                resultDTO.getFairStartdate(), resultDTO.getFairEnddate(), resultDTO.getFairLocation(),
+                resultDTO.getWriterInfo().getMemberId(), "S3 섬네일 이미지 경로", imageSources);
 
         ResponseStatus respMessage = createResponseStatus("201, CREATED"
                 ,"Success to add new post. Post num [" + resultDTO.getFairId() + "]"
