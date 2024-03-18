@@ -7,11 +7,13 @@ import com.teamphoenix.ahub.fair.query.vo.ResponseList;
 import com.teamphoenix.ahub.fair.query.vo.ResponseSearchList;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +24,12 @@ import java.util.List;
 public class FairController {
 
     private final FairService fairService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public FairController(FairService fairServiceImpl) {
+    public FairController(FairService fairServiceImpl, ModelMapper modelMapper) {
         this.fairService = fairServiceImpl;
+        this.modelMapper = modelMapper;
     }
 
     // 게시글을 클릭하면 내용을 호출하는 핸들러 메소드
@@ -33,12 +37,13 @@ public class FairController {
     public ResponseEntity<ResponseFindPost> findFairPost(@PathVariable(value = "postId") int postId) {
 
         FairDTO fairDTO = fairService.getFairPost(postId);
+        ResponseList respMessage = modelMapper.map(fairDTO, ResponseList.class);
 
         ResponseFindPost result = new ResponseFindPost();
         result.setCode("200, OK");
         result.setMessage("Success to Read [" + postId + "] fair post.");
         result.setUrl("http://localhost:8000/board/fairs/lists");
-        result.setResult(fairDTO);
+        result.setResult(respMessage);
 
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
@@ -79,9 +84,10 @@ public class FairController {
         List<ResponseList> responseLists = new ArrayList<>();
         for (FairDTO fairDTO : fairList) {
             ResponseList responseList = new ResponseList();
+            String writeDate = fairDTO.getFairWritedate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             responseList.setFairId(fairDTO.getFairId());
             responseList.setFairTitle(fairDTO.getFairTitle());
-            responseList.setFairWritedate(fairDTO.getFairWritedate());
+            responseList.setFairWritedate(writeDate);
             responseList.setWriteId(fairDTO.getWriterId());
 
             responseLists.add(responseList);
