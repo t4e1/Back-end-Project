@@ -46,7 +46,7 @@ public class Fair {
     private String fairTag3;
 
     @Column(name = "fair_startdate")
-    private LocalDate fairStratdate;
+    private LocalDate fairStartdate;
 
     @Column(name = "fair_enddate")
     private LocalDate fairEnddate;
@@ -65,7 +65,7 @@ public class Fair {
 
     public Fair(String fairTitle, String fairContent, LocalDateTime fairWritedate,
                 int useAcceptance, String fairTag1, String fairTag2, String fairTag3,
-                LocalDate fairStratdate, LocalDate fairEnddate, String fairLocation,
+                LocalDate fairStartdate, LocalDate fairEnddate, String fairLocation,
                 String fairArea, int memberCode) {
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
@@ -74,7 +74,7 @@ public class Fair {
         this.fairTag1 = fairTag1;
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
-        this.fairStratdate = fairStratdate;
+        this.fairStartdate = fairStartdate;
         this.fairEnddate = fairEnddate;
         this.fairLocation = fairLocation;
         this.fairArea = fairArea;
@@ -93,4 +93,34 @@ public class Fair {
     public void setFairWritedate(LocalDateTime fairWritedate) {
         this.fairWritedate = fairWritedate;
     }
+
+    public void setFairTag1(String fairTag1) {
+        this.fairTag1 = fairTag1;
+    }
+
+    public void setFairTag2(String fairTag2) {
+        this.fairTag2 = fairTag2;
+    }
+
+    public void setFairTag3(String fairTag3) {
+        this.fairTag3 = fairTag3;
+    }
+
+    public void setFairStartdate(LocalDate fairStartdate) {
+        this.fairStartdate = fairStartdate;
+    }
+
+    public void setFairEnddate(LocalDate fairEnddate) {
+        this.fairEnddate = fairEnddate;
+    }
+
+    public void setFairLocation(String fairLocation) {
+        this.fairLocation = fairLocation;
+    }
+
+    public void setFairArea(String fairArea) {
+        this.fairArea = fairArea;
+    }
 }
+
+

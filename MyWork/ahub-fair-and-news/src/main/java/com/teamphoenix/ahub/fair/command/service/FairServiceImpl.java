@@ -60,7 +60,7 @@ public class FairServiceImpl implements FairService {
 
         // 불러온 객체 DTO로 변환함
         FairDTO returnDTO = new FairDTO (fair.getFairId(), fair.getFairTitle(), fair.getFairContent(),
-                fair.getFairWritedate(), fair.getFairStratdate(), fair.getFairEnddate(), fair.getFairTag1(),
+                fair.getFairWritedate(), fair.getFairStartdate(), fair.getFairEnddate(), fair.getFairTag1(),
                 fair.getFairTag2(), fair.getFairTag3(), fair.getFairLocation(), fair.getMemberCode());
 
         // 반환할 DTO에 저장된 사진 경로 추가하는 부분 필요
@@ -80,9 +80,18 @@ public class FairServiceImpl implements FairService {
         oldPost.setFairTitle(modifyInfo.getFairTitle());
         oldPost.setFairContent(modifyInfo.getFairContent());
         oldPost.setFairWritedate(modifyInfo.getFairWritedate());
-
+        oldPost.setFairTag1(modifyInfo.getFairTag1());
+        oldPost.setFairTag2(modifyInfo.getFairTag2());
+        oldPost.setFairTag3(modifyInfo.getFairTag3());
+        oldPost.setFairLocation(modifyInfo.getFairLocation());
+        oldPost.setFairArea(modifyInfo.getFairArea());
+        oldPost.setFairStartdate(modifyInfo.getFairStartdate());
+        oldPost.setFairEnddate(modifyInfo.getFairEnddate());
+        System.out.println("oldPost = " + oldPost);
         FairDTO result = modelMapper.map(oldPost, FairDTO.class);
+        System.out.println("result = " + result);
 
+        fairRepository.save(oldPost);
         // 페인 클라이언트로 정보 읽어온다
         ResponseMember memberVO = memberServiceClient.getWriterInfo(modifyInfo.getMemberCode());
 
