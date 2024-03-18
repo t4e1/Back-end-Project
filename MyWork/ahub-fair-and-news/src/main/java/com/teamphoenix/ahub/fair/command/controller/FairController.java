@@ -90,16 +90,14 @@ public class FairController {
             @RequestAttribute("claims") Claims idInfo) {
 
         int writerCode = Integer.parseInt(idInfo.getAudience());
-        System.out.println("getInfo = " + getInfo);
+
         FairDTO modifyInfo = modelMapper.map(getInfo, FairDTO.class);
         modifyInfo.setMemberCode(writerCode);
         modifyInfo.setFairWritedate(LocalDateTime.now());
 
-        System.out.println("modifyInfo = " + modifyInfo);
         // 수정 후 결과값 반환
         FairDTO resultDTO = fairService.modifyFairPost(postNum, modifyInfo);
 
-        System.out.println("resultDTO = " + resultDTO);
         // 프론트에 반환할 때 날짜 -> 파싱해서 YYYY-MM-DD HH-MM-SS 로 바꾸기
         String writeDate = resultDTO.getFairWritedate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 

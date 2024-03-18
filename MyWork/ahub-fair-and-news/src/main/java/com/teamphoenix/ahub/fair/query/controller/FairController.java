@@ -83,12 +83,11 @@ public class FairController {
     private List<ResponseList> doDTOToList(List<FairDTO> fairList) {
         List<ResponseList> responseLists = new ArrayList<>();
         for (FairDTO fairDTO : fairList) {
-            ResponseList responseList = new ResponseList();
+            ResponseList responseList = modelMapper.map(fairDTO, ResponseList.class);
+            String returnString = fairDTO.getFairContent().substring(0, Math.min(fairDTO.getFairContent().length(), 30));
+            responseList.setFairContent(returnString);
             String writeDate = fairDTO.getFairWritedate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            responseList.setFairId(fairDTO.getFairId());
-            responseList.setFairTitle(fairDTO.getFairTitle());
             responseList.setFairWritedate(writeDate);
-            responseList.setWriteId(fairDTO.getWriterId());
 
             responseLists.add(responseList);
         }

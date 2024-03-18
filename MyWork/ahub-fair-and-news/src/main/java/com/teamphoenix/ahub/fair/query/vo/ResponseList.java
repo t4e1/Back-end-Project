@@ -7,15 +7,14 @@ public class ResponseList {
 
     private int fairId;
     private String fairTitle;
-    private String fairConent;
-    private String thumSource;
+    private String fairContent;
     private String fairStartdate;
     private String fairEnddate;
     private String fairLocation;
     private String fairTag1;
     private String fairTag2;
     private String fairTag3;
-    private String writeId;
+    private String writerId;
     private String fairWritedate;
     private String thumImage;
     private List<String> contentImages;
@@ -23,37 +22,35 @@ public class ResponseList {
     public ResponseList() {
     }
 
-    public ResponseList(int fairId, String fairTitle, String fairConent, String thumSource,
+    public ResponseList(int fairId, String fairTitle, String fairConent,
                         String fairStartdate, String fairEnddate, String fairLocation, String fairTag1,
-                        String fairTag2, String fairTag3, String writeId, String fairWritedate) {
+                        String fairTag2, String fairTag3, String writerId, String fairWritedate) {
         this.fairId = fairId;
         this.fairTitle = fairTitle;
-        this.fairConent = fairConent;
-        this.thumSource = thumSource;
+        this.fairContent = fairConent;
         this.fairStartdate = fairStartdate;
         this.fairEnddate = fairEnddate;
         this.fairLocation = fairLocation;
         this.fairTag1 = fairTag1;
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
-        this.writeId = writeId;
+        this.writerId = writerId;
         this.fairWritedate = fairWritedate;
     }
 
-    public ResponseList(int fairId, String fairTitle, String fairConent, String thumSource, String fairStartdate,
+    public ResponseList(int fairId, String fairTitle, String fairContent, String fairStartdate,
                         String fairEnddate, String fairLocation, String fairTag1, String fairTag2, String fairTag3,
-                        String writeId, String fairWritedate, String thumImage, List<String> contentImages) {
+                        String writerId, String fairWritedate, String thumImage, List<String> contentImages) {
         this.fairId = fairId;
         this.fairTitle = fairTitle;
-        this.fairConent = fairConent;
-        this.thumSource = thumSource;
+        this.fairContent = fairContent;
         this.fairStartdate = fairStartdate;
         this.fairEnddate = fairEnddate;
         this.fairLocation = fairLocation;
         this.fairTag1 = fairTag1;
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
-        this.writeId = writeId;
+        this.writerId = writerId;
         this.fairWritedate = fairWritedate;
         this.thumImage = thumImage;
         this.contentImages = contentImages;
@@ -67,20 +64,12 @@ public class ResponseList {
         this.fairTitle = fairTitle;
     }
 
-    public String getFairConent() {
-        return fairConent;
+    public String getFairContent() {
+        return fairContent;
     }
 
-    public void setFairConent(String fairConent) {
-        this.fairConent = fairConent;
-    }
-
-    public String getThumSource() {
-        return thumSource;
-    }
-
-    public void setThumSource(String thumSource) {
-        this.thumSource = thumSource;
+    public void setFairContent(String fairConent) {
+        this.fairContent = fairConent;
     }
 
     public String getFairStartdate() {
@@ -131,12 +120,12 @@ public class ResponseList {
         this.fairTag3 = fairTag3;
     }
 
-    public String getWriteId() {
-        return writeId;
+    public String getWriterId() {
+        return writerId;
     }
 
-    public void setWriteId(String writeId) {
-        this.writeId = writeId;
+    public void setWriterId(String writerId) {
+        this.writerId = writerId;
     }
 
     public String getFairWritedate() {
@@ -176,15 +165,14 @@ public class ResponseList {
         return "ResponseList{" +
                 "fairId=" + fairId +
                 ", fairTitle='" + fairTitle + '\'' +
-                ", fairConent='" + fairConent + '\'' +
-                ", thumSource='" + thumSource + '\'' +
+                ", fairContent='" + fairContent + '\'' +
                 ", fairStartdate='" + fairStartdate + '\'' +
                 ", fairEnddate='" + fairEnddate + '\'' +
                 ", fairLocation='" + fairLocation + '\'' +
                 ", fairTag1='" + fairTag1 + '\'' +
                 ", fairTag2='" + fairTag2 + '\'' +
                 ", fairTag3='" + fairTag3 + '\'' +
-                ", writeId='" + writeId + '\'' +
+                ", writerId='" + writerId + '\'' +
                 ", fairWritedate='" + fairWritedate + '\'' +
                 ", thumImage='" + thumImage + '\'' +
                 ", contentImages=" + contentImages +

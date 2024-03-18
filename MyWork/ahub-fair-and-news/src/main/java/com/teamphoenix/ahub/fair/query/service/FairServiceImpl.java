@@ -34,6 +34,7 @@ public class FairServiceImpl implements FairService {
         FairDTO result = fairMapper.getFairPost(fairId);
 
         ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
+
         result.setWriterId(responseMember.getMemberId());
 
         return result;
@@ -48,7 +49,6 @@ public class FairServiceImpl implements FairService {
         }
 
         List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
-//            log.info("result 결과물 : {}", result);
 
         List<String> codeList = new ArrayList<>();
 
